@@ -1195,5 +1195,59 @@
         "bonus": null,
         "effect": null,
         "code": "1P"
+    },
+    {
+        "name": "NEURAL LINK",
+        "color": ["b"],
+        "type": ["effect", "techlings"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "0Q"
+    },
+    {
+        "name": "BINARY",
+        "color": ["g"],
+        "type": ["effect", "techlings"],
+        "faceValue": 0,
+        "bonus": null,
+        "effect": null,
+        "code": "0R"
+    },
+    {
+        "name": "GREY HAT",
+        "color": ["g"],
+        "type": ["effect", "techlings"],
+        "faceValue": -1,
+        "bonus": null,
+        "effect": null,
+        "code": "0S"
+    },
+    {
+        "name": "HYPER-MYELINATION",
+        "color": ["p"],
+        "type": ["effect", "techlings"],
+        "faceValue": 0,
+        "bonus": null,
+        "effect": null,
+        "code": "0T"
+    },
+    {
+        "name": "BIONIC ARM",
+        "color": ["r"],
+        "type": ["effect", "techlings"],
+        "faceValue": -2,
+        "bonus": null,
+        "effect": null,
+        "code": "0U"
+    },
+    {
+        "name": "PHREAKISH EYES",
+        "color": ["r"],
+        "type": ["effect", "techlings"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "0V"
     }
 ]

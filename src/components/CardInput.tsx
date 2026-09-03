@@ -25,7 +25,7 @@ export default function CardInput({players, setPlayers, selectedPlayer, setDisca
     const [showColorPicker, setShowColorPicker] = useState<boolean>(false);
     const [showDoubleColorPicker, setShowDoubleColorPicker] = useState<boolean>(false);
     const [selectedColor, setSelectedColor] = useState<number[]>([0, 0]);
-
+    
     useEffect(() => {
         if(!inputIsFocused) {
             setShowAutoComplete(false);

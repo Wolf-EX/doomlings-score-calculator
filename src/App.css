@@ -47,6 +47,15 @@
     margin-bottom: 0;
 }
 
+.catastrophe-list {
+    left: 50%;
+    transform: translate(-50%, 1px);
+}
+
+.catastrophe-item {
+    padding: .5vh 10vh;
+}
+
 .player-tab-container {
     margin-bottom: 1vh;
 }
@@ -195,7 +204,6 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: max-content;
     align-items: stretch;
-    /* width: 20%; */
     gap: 4px;
 }
 
@@ -205,6 +213,25 @@
     padding: 1vh;
     background-color: var(--card-bg);
     border: 1px solid var(--card-border);
+}
+
+.card-item-container > p {
+    text-wrap-mode: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-button-container {
+    display: flex;
+    justify-content: end;
+    flex: 1;
+    gap: 8px;
+}
+
+.card-item-tech {
+    width: 1.5rem;
+    height: 1.5rem;
+    vertical-align: middle;
 }
 
 .delete-button {

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Catastrophe, Player } from '../data/types';
 import catastrophe from '../data/catastrophe.json' with {type: 'json'};
 import { checkScore } from '../util/score';
+import ListItem from './ListItem';
 
 type Props = {
     players: Player[];
@@ -45,16 +46,15 @@ export default function CatastropheButton({players, selectedCatastrophe, setSele
             <button className='catastrophe' onClick={catastropheButtonClick}>
                 Catastrophe: {selectedCatastrophe === null ? "None" : catastropheName}
             </button>
-            <div className='list-container'>
+            <div className='list-container catastrophy-list'>
                 {
                     showCatastropheList && catastrophe.map((catastropheItem, index: number) => (
-                        <div
+                        <ListItem
                             key={index + catastropheItem.id}
-                            className='list-item'
+                            className='list-item catastrophe-item'
+                            text={catastropheItem.name}
                             onClick={() => onCatastropheClick(catastropheItem as Catastrophe)}
-                        >
-                            {catastropheItem.name}
-                        </div>
+                        />
                     ))
                 }
             </div>

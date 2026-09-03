@@ -2,12 +2,13 @@ export type Trait = {
   name: string;
   color: string[];
   type: string[];
-  faceValue: number | null;
+  faceValue: number;
   bonus: Bonus | null;
-  effect: null | {
+  effect: {
     popup?: "none" | "single" | "double";
     type: string;
-  }; // string is temp till I implement bonus effects (like color change)
+    value?: string;
+  } | null; // string is temp till I implement bonus effects (like color change)
   code: string; // change to id
 }
 
@@ -17,15 +18,16 @@ export type Catastrophe = {
   id: string;
 }
 
-
 export type Bonus = {
   type: string;
-  typeValue?: number | Color | 'c' | 'positive' | 'negative' | 'choice';
+  typeValue?: TypeValue
   location?: 'traitPile' | 'hand' | 'discardPile' | 'genePool';
-  target?: 'all' | 'self' | 'opponent' | 'player';
+  target?: 'all' | 'self' | 'opponent' | 'player' | 'host';
   amount: number;
   value: number;
 }
+
+export type TypeValue = number | Color | 'c' | 'positive' | 'negative' | 'choice' | 'host' | string[]; // string is temp
 
 export type Player = {
   id: number;
@@ -45,7 +47,7 @@ export type Color = 'r' | 'b' | 'g' | 'p';
 export type ModifierType = ColorChangeMod;
 
 export type ColorChangeMod = {
-  type: string;
+  type: "color";
   from: Color;
   to: Color;
 }
