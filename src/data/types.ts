@@ -7,7 +7,7 @@ export type Trait = {
   effect: {
     popup?: "none" | "single" | "double";
     type: string;
-    value?: string;
+    value?: Color;
   } | null; // string is temp till I implement bonus effects (like color change)
   code: string; // change to id
 }
@@ -20,20 +20,22 @@ export type Catastrophe = {
 
 export type Bonus = {
   type: string;
-  typeValue?: TypeValue
-  location?: 'traitPile' | 'hand' | 'discardPile' | 'genePool';
+  typeValue?: TypeValue;
+  location: Location;
   target?: 'all' | 'self' | 'opponent' | 'player' | 'host';
   amount: number;
   value: number;
 }
 
-export type TypeValue = number | Color | 'c' | 'positive' | 'negative' | 'choice' | 'host' | string[]; // string is temp
+export type Location = 'traitPile' | 'hand' | 'discardPile' | 'genePool';
+
+export type TypeValue = number | Color[] | Color | 'c' | 'positive' | 'negative' | 'choice' | 'host' | undefined; // string is temp
 
 export type Player = {
   id: number;
   name: string;
   score: number;
-  genePool: number;
+  genePool: number | number[];
   traitPile: string[];
   hand: string[];
   modifier: ModifierType[];

@@ -1199,55 +1199,68 @@
     {
         "name": "NEURAL LINK",
         "color": ["b"],
-        "type": ["effect", "techlings"],
+        "type": ["effect", "techling"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
-        "code": "0Q"
+        "code": "1Q"
     },
     {
         "name": "BINARY",
         "color": ["g"],
-        "type": ["effect", "techlings"],
+        "type": ["effect", "techling"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
-        "code": "0R"
+        "code": "1R"
     },
     {
         "name": "GREY HAT",
         "color": ["g"],
-        "type": ["effect", "techlings"],
+        "type": ["effect", "techling"],
         "faceValue": -1,
         "bonus": null,
         "effect": null,
-        "code": "0S"
+        "code": "1S"
     },
     {
         "name": "HYPER-MYELINATION",
         "color": ["p"],
-        "type": ["effect", "techlings"],
+        "type": ["effect", "techling"],
         "faceValue": 0,
-        "bonus": null,
+        "bonus": {
+            "type": "greatestValue",
+            "location": "genePool",
+            "target": "all",
+            "amount": 1,
+            "value": 1
+        },
         "effect": null,
-        "code": "0T"
+        "code": "1T"
     },
     {
         "name": "BIONIC ARM",
         "color": ["r"],
-        "type": ["effect", "techlings"],
+        "type": ["effect", "techling"],
         "faceValue": -2,
-        "bonus": null,
+         "bonus": {
+            "type": "bionic",
+            "typeValue": "techling",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": 1
+        },
         "effect": null,
-        "code": "0U"
+        "code": "1U"
     },
     {
         "name": "PHREAKISH EYES",
         "color": ["r"],
-        "type": ["effect", "techlings"],
+        "type": ["effect", "techling"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
-        "code": "0V"
+        "code": "1V"
     }
 ]

@@ -11,7 +11,7 @@
     {
         "name": "CYBERNETIC",
         "color": ["b"],
-        "type": ["effect", "attachment", "techlings"],
+        "type": ["effect", "attachment", "techling"],
         "faceValue": 1,
         "bonus": null,
         "effect": {
@@ -23,7 +23,7 @@
     {
         "name": "MECHA",
         "color": ["b"],
-        "type": ["effect", "attachment", "techlings"],
+        "type": ["effect", "attachment", "techling"],
         "faceValue": 0,
         "bonus": {
             "type": "typeMissing",
@@ -39,7 +39,7 @@
     {
         "name": "LYONIZATION",
         "color": ["g"],
-        "type": ["effect", "attachment", "techlings"],
+        "type": ["effect", "attachment", "techling"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -48,7 +48,7 @@
     {
         "name": "NANO",
         "color": ["g"],
-        "type": ["effect", "attachment", "techlings"],
+        "type": ["effect", "attachment", "techling"],
         "faceValue": 0,
         "bonus": {
             "type": "faceValue",
@@ -63,7 +63,7 @@
     {
         "name": "TRANSGENIC MODIFICATION",
         "color": ["g"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": {
@@ -75,7 +75,7 @@
     {
         "name": "RUGGEDIZED",
         "color": ["c"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 4,
         "bonus": null,
         "effect": null,
@@ -84,7 +84,7 @@
     {
         "name": "GMO",
         "color": ["c"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": -1,
         "bonus": {
             "type": "color",
@@ -100,7 +100,7 @@
     {
         "name": "ELECTROMAGNETIC",
         "color": ["p"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -109,7 +109,7 @@
     {
         "name": "SUBDERMAL PLATING",
         "color": ["p"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": -1,
         "bonus": null,
         "effect": null,
@@ -118,7 +118,7 @@
     {
         "name": "BONE REINFORCEMENT",
         "color": ["red"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -145,7 +145,7 @@
     {
         "name": "SOLAR-POWERED",
         "color": ["b"],
-        "type": ["effect", "attachment", "techlings"],
+        "type": ["effect", "attachment", "techling"],
         "faceValue": 0,
         "bonus": {
             "type": "faceValue",
@@ -160,7 +160,7 @@
     {
         "name": "BACK PROPAGATION",
         "color": ["b"],
-        "type": ["effect", "attachment", "techlings"],
+        "type": ["effect", "attachment", "techling"],
         "faceValue": 2,
         "bonus": null,
         "effect": {
@@ -172,7 +172,7 @@
     {
         "name": "CRYONICS",
         "color": ["b"],
-        "type": ["effect", "attachment", "techlings"],
+        "type": ["effect", "attachment", "techling"],
         "faceValue": 1,
         "bonus": null,
         "effect": {
@@ -184,7 +184,7 @@
     {
         "name": "SPEECH RECOGNITION",
         "color": ["b"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -193,7 +193,7 @@
     {
         "name": "BIONIC LEG",
         "color": ["g"],
-        "type": ["effect", "attachment", "techlings"],
+        "type": ["effect", "attachment", "techling"],
         "faceValue": 1,
         "bonus": null,
         "effect": {
@@ -205,7 +205,7 @@
     {
         "name": "TERRARIUM",
         "color": ["g"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -214,7 +214,7 @@
     {
         "name": "FILAMENT",
         "color": ["g"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -223,7 +223,7 @@
     {
         "name": "SPRINGY",
         "color": ["p"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -232,7 +232,7 @@
     {
         "name": "TRANSISTOR",
         "color": ["p"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -241,7 +241,7 @@
     {
         "name": "CORRODED",
         "color": ["r"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": -1,
         "bonus": null,
         "effect": null,
@@ -250,7 +250,7 @@
     {
         "name": "REFURBISHED",
         "color": ["r"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -259,7 +259,7 @@
     {
         "name": "TREADS",
         "color": ["r"],
-        "type": ["techlings", "attachment"],
+        "type": ["techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,

@@ -30,9 +30,12 @@ export function getAttachment(id: string): Trait | undefined {
   return undefined;
 }
 
-export function getTraitsWithAttachments(location: string[]): string[] {
-  const attachments = location.filter(traitId => traitId.length > 4);
-  return [...location, ...attachments.map(id => id + "1")];
+export function getTraitsWithAttachments(location: unknown): string[] {
+  if(Array.isArray(location) && location.every(e => typeof e === "string")) {
+    const attachments = location.filter(traitId => traitId.length > 4);
+    return [...location, ...attachments.map(id => id + "1")];
+  }
+  return [];
 }
 
 export function getLocationSize(location: string[]): number {
