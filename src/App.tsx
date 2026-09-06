@@ -21,6 +21,8 @@ export default function App() {
 
   const uid = useRef(0);
 
+  console.log("players", players)
+
   useEffect(() => {
     setPlayers([]);
     checkScore([], selectedCatastrophe);

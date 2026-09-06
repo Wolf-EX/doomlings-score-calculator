@@ -14,7 +14,7 @@ export function checkScore(players: Player[], catastrophe: Catastrophe): number[
 
 type bonusTypes = "name" | "color" | "type";
 function getTraitModifier<T>(player: Player, trait: Trait, type: bonusTypes, attachment: Trait | undefined): T {
-  let traitType = trait[type];
+  let traitType = structuredClone(trait[type]);
 
   if(attachment && attachment.effect) {
     // color
@@ -26,7 +26,7 @@ function getTraitModifier<T>(player: Player, trait: Trait, type: bonusTypes, att
   if(player.modifier.length > 0) {
     const mod: ModifierType[] = player.modifier.filter((obj: ModifierType) => obj.type === type);
     if(mod.length > 0) {
-      return mod.reduce((acc: string | string[] , cur: ModifierType) => {
+      return  mod.reduce((acc: string | string[] , cur: ModifierType) => {
         if(Array.isArray(acc) && acc.includes(cur.from)) {
           const index: number = acc.findIndex((e: string) => e === cur.from);
           acc[index] = cur.to;
@@ -68,9 +68,9 @@ export function getCatastropheValue(players: Player[], index: number, catastroph
           const playerPileCount: number[] = players.map(player => {
             return getLocationSize(player["traitPile"]);
           }) || [];
-          return catastrophe.bonus.type === "most" ? 
-            player.traitPile.length === Math.max(...playerPileCount) ? catastrophe.bonus.value : 0 :
-            player.traitPile.length === Math.min(...playerPileCount) ? catastrophe.bonus.value : 0;
+          return catastrophe.bonus.type === "most" ?
+            getLocationSize(player["traitPile"]) === Math.max(...playerPileCount) ? catastrophe.bonus.value : 0 :
+            getLocationSize(player["traitPile"]) === Math.min(...playerPileCount) ? catastrophe.bonus.value : 0;
         }
       break;
       case "colorsCount":
@@ -87,7 +87,6 @@ export function getCatastropheValue(players: Player[], index: number, catastroph
   return 0;
 }
 
-// clean this up, do if trait !== undefined instead and return 0 at bottom
 export function getTraitTotalValue(players: Player[], index: number, id: string, catastrophe: Catastrophe, modifier: number[]): number {
   const trait: Trait | undefined = getTraitData(id);
   const attachment = getAttachment(id);
@@ -95,10 +94,17 @@ export function getTraitTotalValue(players: Player[], index: number, id: string,
     return 0;
   }
 
+
+  // AI TAKEOVER
   if(catastrophe?.bonus?.type === "colorBlock" || (catastrophe?.bonus?.type === "colorBlock2" && !trait.type.includes("dominant"))) {
     if(getTraitModifier<"color">(players[index], trait, "color", attachment).includes(catastrophe?.bonus?.typeValue as Color)) {
       return catastrophe?.bonus?.value;
     }
+  }
+  
+  // LYONIZATION
+  if(attachment && attachment.bonus?.type === "block") {
+    return trait.faceValue;
   }
 
   let total: number = getFaceValue(trait, attachment);
@@ -116,10 +122,10 @@ function applyScoreModifier(bonus: Bonus, players: Player[], index: number, id: 
   if(bonus.type === "colorAttack") {
     let value: Color = bonus.typeValue as Color;
     if(bonus.typeValue === "choice"){
-      // value = getColor(id.slice(2)) || value;
       value = id.slice(2) as Color || value;
     }
 
+    
     if(['r', 'b', 'g', 'p'].includes(value)) {
       players.forEach((player, i) => {
         if(i !== index) {
@@ -137,13 +143,12 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
   let count = 0;
   let bonusValue = bonus.value;
   let bonusType = bonus.type;
-  let target: Player = players[index]; // Current player, change to player?
-  // rename this?
+  let targetPlayer: Player = players[index]; // Current player, change to player?
   let location: string[] | number[] | number | undefined; // undefined is temp until I implement discard and hand
   
   if(bonus.target === 'opponent') {
     // make target a new Player object and add all opponent piles to it
-    target = {
+    targetPlayer = {
       id: index,
       name: "opponents",
       score: 0,
@@ -167,11 +172,11 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
 
     players.forEach((e, i) => {
       if(i !== index) {
-        target.traitPile.push(...e.traitPile); // do i need to set the target.traitPile to check location?
+        targetPlayer.traitPile.push(...e.traitPile); // do i need to set the target.traitPile to check location?
       }
     });
   } else if(bonus.target === 'all') {
-    target = {
+    targetPlayer = {
       id: index,
       name: "opponents",
       genePool: [],
@@ -183,21 +188,21 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
     };
     
     if(bonus.location && bonus.location !== 'discardPile') {
-      location = target?.[bonus.location];
+      location = targetPlayer?.[bonus.location];
     }
     if(bonus.location === 'genePool') {
       players.forEach(e => {
-        if(Array.isArray(target.genePool) && typeof e.genePool === 'number')
-        target.genePool.push(e.genePool);
+        if(Array.isArray(targetPlayer.genePool) && typeof e.genePool === 'number')
+        targetPlayer.genePool.push(e.genePool);
       });
     } else {
       players.forEach(e => {
-        target.traitPile.push(...e.traitPile); // do i need to set the target.traitPile to check location?
+        targetPlayer.traitPile.push(...e.traitPile); // do i need to set the target.traitPile to check location?
       });
     }
   } else {
     if(bonus.location && bonus.location !== "discardPile") {
-      location = target[bonus.location];
+      location = targetPlayer[bonus.location];
     }
   }
 
@@ -211,18 +216,18 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
     } else {
      switch(bonusType) {
       case "diffColors":
-        count = getAllColorCount(target, getTraitsWithAttachments(location)).reduce((acc, cur) => {
+        count = getAllColorCount(targetPlayer, getTraitsWithAttachments(location)).reduce((acc, cur) => {
           return acc += cur > 0 ? 1 : 0;
         }, 0);
       break;
       case "colorPair":
-        const reducedcolorCount: number[] = getAllColorCount(target, getTraitsWithAttachments(location));
+        const reducedcolorCount: number[] = getAllColorCount(targetPlayer, getTraitsWithAttachments(location));
         count = reducedcolorCount.reduce((acc, cur) => {
           return acc += Math.floor(cur / bonus.amount);
         }, 0);
       break;
       case "lowestColor":
-        const filteredColorCount: number[] = getAllColorCount(target, getTraitsWithAttachments(location)).filter(e => e !== 0);
+        const filteredColorCount: number[] = getAllColorCount(targetPlayer, getTraitsWithAttachments(location)).filter(e => e !== 0);
         if(filteredColorCount.length > 1) {
           count = Math.min(...filteredColorCount);
         }
@@ -231,7 +236,7 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
         // try highestIndex = colorCount.indexOf(Math.max(...colorCount));
         let highestValue = 0;
         let highestIndex = -1;
-        getAllColorCount(target, getTraitsWithAttachments(location)).forEach((count, index) => {
+        getAllColorCount(targetPlayer, getTraitsWithAttachments(location)).forEach((count, index) => {
           if(count > highestValue) {
             highestValue = count;
             highestIndex = index;
@@ -258,7 +263,6 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
         }
         return hasMost ? bonusValue : 0;
       case "faceValue":
-        // update this to just take id
         const value = getBonusTypeValue(id);
         if(typeof value === "number") {
           return value;
@@ -280,7 +284,7 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
         count = getTraitsWithAttachments(location).reduce((acc, cur) => {
           const trait: Trait | undefined = getTraitData(cur);
           if(trait) {
-            return acc += checkBonusMatch(target, id, cur, bonusType, typeValue, trait);
+            return acc += checkBonusMatch(targetPlayer, id, cur, bonusType, typeValue, trait);
           }
           return 0;
         }, 0);

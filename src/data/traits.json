@@ -67,7 +67,7 @@
         "code": "05"
     },
     {
-        "name": "CHROMAOPHORES",
+        "name": "CHROMATOPHORES",
         "color": ["b"],
         "type": ["effect"],
         "faceValue": 0,
@@ -499,7 +499,7 @@
         "name": "ALTRUISTIC",
         "color": ["c"],
         "type": ["effect", "dropOfLife"],
-        "faceValue": null,
+        "faceValue": 0,
         "bonus": {
             "type": "size",
             "location": "genePool",

@@ -41,7 +41,13 @@
         "color": ["g"],
         "type": ["effect", "attachment", "techling"],
         "faceValue": 1,
-        "bonus": null,
+         "bonus": {
+            "type": "block",
+            "typeValue": "host",
+            "location": "traitPile",
+            "amount": 1,
+            "value": 1
+        },
         "effect": null,
         "code": "3"
     },
