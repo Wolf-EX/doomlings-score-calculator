@@ -186,18 +186,15 @@ input:focus {
 
 .list-container {
   position: fixed;
-  left: 50%;
-  transform: translate(-50%, 1px);
-  z-index: 10;
   max-height: 85dvh;
   overflow-y: auto;
-  overflow-x: hidden; 
+  overflow-x: hidden;
+  z-index: 10;
 }
 
 .list-item {
   background-color: var(--list-bg);
   border: 1px solid white;
-  padding: .5vh 10vh;
   text-wrap-mode: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -206,6 +203,10 @@ input:focus {
 .list-item:hover {
   color: black;
   background-color: white;
+}
+
+.attachment-item {
+  padding: .5vh 6vw;
 }
 
 .bg-red {

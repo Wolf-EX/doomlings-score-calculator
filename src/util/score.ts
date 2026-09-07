@@ -1,33 +1,49 @@
-import type { Player, Trait, Bonus, Color, Catastrophe, ModifierType } from "../data/types";
-import { findTrait } from "./util";
+import type { Player, Trait, Bonus, Color, Catastrophe, ModifierType, TypeValue } from "../data/types";
+import { findAttachment, getLocationSize, getTraitsWithAttachments, getTraitData, getAttachment, findTrait, isString } from "./util";
 
 export function checkScore(players: Player[], catastrophe: Catastrophe): number[] {
   const playerScoreModifier: number[] = Array(players.length).fill(0);
   players.forEach((player: Player, index: number) => {
-    player.score = player.traitPile.reduce((acc: number, cur: string) =>
+    player.score = getTraitsWithAttachments(player.traitPile).reduce((acc: number, cur: string) => 
       acc + getTraitTotalValue(players, index, cur, catastrophe, playerScoreModifier), 0);
+
     player.score += getCatastropheValue(players, index, catastrophe) + playerScoreModifier[index];
   });
   return players.map(player => player.score);
 }
 
-// fix these types
-function getTraitModifier(player: Player, trait: Trait, type: "name" | "color" | "type"): string | string[] {
-  const traitCopy: Trait = structuredClone(trait);
+type bonusTypes = "name" | "color" | "type";
+function getTraitModifier<T>(player: Player, trait: Trait, type: bonusTypes, attachment: Trait | undefined): T {
+  let traitType = structuredClone(trait[type]);
+
+  if(attachment && attachment.effect) {
+    // color
+    if(attachment.effect.type === "colorChange" && type === "color" && attachment.effect.value) {
+      traitType = attachment.effect.value;
+    }
+  }
+  
   if(player.modifier.length > 0) {
     const mod: ModifierType[] = player.modifier.filter((obj: ModifierType) => obj.type === type);
     if(mod.length > 0) {
-      return mod.reduce((acc: string | string[], cur: ModifierType) => {
+      return  mod.reduce((acc: string | string[] , cur: ModifierType) => {
         if(Array.isArray(acc) && acc.includes(cur.from)) {
           const index: number = acc.findIndex((e: string) => e === cur.from);
           acc[index] = cur.to;
           return acc;
         }
         return acc === cur.from ? cur.to : acc;
-      }, traitCopy[type]);
+      }, traitType) as T;
     }
   }
-  return trait[type];
+  return traitType as T;
+}
+
+function getFaceValue(trait: Trait, attachment: Trait | undefined): number {
+  if(attachment && attachment.effect && attachment.effect.type === "faceValueChange" && typeof attachment.effect.value === "number") {
+    return attachment.effect.value;
+  }
+  return trait.faceValue;
 }
 
 export function getCatastropheValue(players: Player[], index: number, catastrophe: Catastrophe): number {
@@ -35,13 +51,13 @@ export function getCatastropheValue(players: Player[], index: number, catastroph
   if(catastrophe.bonus){
     switch(catastrophe.bonus.type) {
       case "missingColor":
-        const colors = getAllColorCount(player, player.traitPile);
+        const colors = getAllColorCount(player, getTraitsWithAttachments(player.traitPile));
         return colors.reduce((acc: number, cur: number) => acc += cur === 0 ? -2 : 0, 0);
       case "color":
         const location = catastrophe.bonus.location || "traitPile";
         if(location !== "discardPile" && location !== "genePool") {
           const colorCount: number = getAllColorCount(player,
-              player[location])[["r", "b", "g", "p"].indexOf(catastrophe.bonus.typeValue as Color)];
+              getTraitsWithAttachments(player[location]))[["r", "b", "g", "p"].indexOf(catastrophe.bonus.typeValue as Color)];
               return colorCount * catastrophe.bonus.value;
         }
       break;
@@ -49,18 +65,17 @@ export function getCatastropheValue(players: Player[], index: number, catastroph
         return player.catastropheBonus * catastrophe.bonus.value;
       case "fewest": case "most":
         if(catastrophe.bonus.location === "traitPile") {
-          const location = catastrophe.bonus.location;
           const playerPileCount: number[] = players.map(player => {
-            return player[location].length;
+            return getLocationSize(player["traitPile"]);
           }) || [];
-          return catastrophe.bonus.type === "most" ? 
-            player.traitPile.length === Math.max(...playerPileCount) ? catastrophe.bonus.value : 0 :
-            player.traitPile.length === Math.min(...playerPileCount) ? catastrophe.bonus.value : 0;
+          return catastrophe.bonus.type === "most" ?
+            getLocationSize(player["traitPile"]) === Math.max(...playerPileCount) ? catastrophe.bonus.value : 0 :
+            getLocationSize(player["traitPile"]) === Math.min(...playerPileCount) ? catastrophe.bonus.value : 0;
         }
       break;
       case "colorsCount":
         if(catastrophe.bonus.location === "traitPile") {
-          const colorCount: number[] = getAllColorCount(player, player[catastrophe.bonus.location]);
+          const colorCount: number[] = getAllColorCount(player, getTraitsWithAttachments(player[catastrophe.bonus.location]));
           if(Math.max(...colorCount) >= catastrophe.bonus.amount) {
             return catastrophe.bonus.value;
           }
@@ -72,20 +87,27 @@ export function getCatastropheValue(players: Player[], index: number, catastroph
   return 0;
 }
 
-// clean this up, do if trait !== undefined instead and return 0 at bottom
 export function getTraitTotalValue(players: Player[], index: number, id: string, catastrophe: Catastrophe, modifier: number[]): number {
-  const trait: Trait | undefined = findTrait(id);
+  const trait: Trait | undefined = getTraitData(id);
+  const attachment = getAttachment(id);
   if(trait === undefined) {
     return 0;
   }
 
+
+  // AI TAKEOVER
   if(catastrophe?.bonus?.type === "colorBlock" || (catastrophe?.bonus?.type === "colorBlock2" && !trait.type.includes("dominant"))) {
-    if(getTraitModifier(players[index], trait, "color").includes(catastrophe?.bonus?.typeValue as Color)) {
+    if(getTraitModifier<"color">(players[index], trait, "color", attachment).includes(catastrophe?.bonus?.typeValue as Color)) {
       return catastrophe?.bonus?.value;
     }
   }
+  
+  // LYONIZATION
+  if(attachment && attachment.bonus?.type === "block") {
+    return trait.faceValue;
+  }
 
-  let total: number = trait.faceValue || 0;
+  let total: number = getFaceValue(trait, attachment);
 
   if(trait?.effect?.type === "modify" && trait?.bonus){
     applyScoreModifier(trait.bonus, players, index, id, modifier);
@@ -100,15 +122,15 @@ function applyScoreModifier(bonus: Bonus, players: Player[], index: number, id: 
   if(bonus.type === "colorAttack") {
     let value: Color = bonus.typeValue as Color;
     if(bonus.typeValue === "choice"){
-      // value = getColor(id.slice(2)) || value;
       value = id.slice(2) as Color || value;
     }
 
+    
     if(['r', 'b', 'g', 'p'].includes(value)) {
       players.forEach((player, i) => {
         if(i !== index) {
           if(bonus.location && bonus.location !== "discardPile" && bonus.location !== "genePool"){
-            const pile = player[bonus.location];
+            const pile = getTraitsWithAttachments(player[bonus.location]);
             modifier[i] += getAllColorCount(player, pile)[['r', 'b', 'g', 'p'].indexOf(value)] * bonus.value;
           }
         }
@@ -119,16 +141,13 @@ function applyScoreModifier(bonus: Bonus, players: Player[], index: number, id: 
 
 function countBonusType(players: Player[], index: number, id: string, bonus: Bonus): number {
   let count = 0;
-  let target: Player = players[index]; // Current player, change to player?
-  let location: number | string[] | undefined; // undefined is temp until I implement discard and hand
-
-  /* if(bonus.target === 'self') {
-    // why is this here if it initializes as player already?
-    target = player;
-  }  */
+  let bonusValue = bonus.value;
+  let bonusType = bonus.type;
+  let targetPlayer: Player = players[index]; // Current player, change to player?
+  let location: string[] | number[] | number | undefined; // undefined is temp until I implement discard and hand
+  
   if(bonus.target === 'opponent') {
-    // make target a new Player object and add all opponent piles to it
-    target = {
+    targetPlayer = {
       id: index,
       name: "opponents",
       score: 0,
@@ -138,63 +157,84 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
       modifier: [],
       catastropheBonus: 0
     };
+
+    /*
+      if(bonus.location && bonus.location !== 'discardPile') {
+        location = target?.[bonus.location];
+        players.forEach((e, i) => {
+          if(i !== index) {
+            target[location].push(...e.traitPile);
+          }
+        });
+      }
+    */
 
     players.forEach((e, i) => {
       if(i !== index) {
-        target.traitPile.push(...e.traitPile); // do i need to set the target.traitPile to check location?
+        targetPlayer.traitPile.push(...e.traitPile); // do i need to set the target.traitPile to check location?
       }
     });
   } else if(bonus.target === 'all') {
-    target = {
+    targetPlayer = {
       id: index,
       name: "opponents",
-      genePool: 0,
+      genePool: [],
       score: 0,
       traitPile: [],
       hand: [],
       modifier: [],
       catastropheBonus: 0
     };
-
-    players.forEach(e => {
-      target.traitPile.push(...e.traitPile); // do i need to set the target.traitPile to check location?
-    });
+    
+    if(bonus.location && bonus.location !== 'discardPile') {
+      location = targetPlayer?.[bonus.location];
+    }
+    if(bonus.location === 'genePool') {
+      players.forEach(e => {
+        if(Array.isArray(targetPlayer.genePool) && typeof e.genePool === 'number')
+        targetPlayer.genePool.push(e.genePool);
+      });
+    } else {
+      players.forEach(e => {
+        targetPlayer.traitPile.push(...e.traitPile); // do i need to set the target.traitPile to check location?
+      });
+    }
+  } else {
+    if(bonus.location && bonus.location !== "discardPile") {
+      location = targetPlayer[bonus.location];
+    }
   }
 
-  if(bonus.location && bonus.location !== 'discardPile') {
-    location = target?.[bonus.location];
-  }
-
-  // temp, there will always be a location once I implement discard and hand
   if(location) {
+    // find out where location is set to number to update with attachments
     if(typeof location === 'number') {
-      if(bonus.type === 'size') {
+      if(bonusType === 'size') {
+        // need function to getLocationSize so attachments get counted
         count = location / bonus.amount;
       }
-    } else {  
-     switch(bonus.type) {
+    } else {
+     switch(bonusType) {
       case "diffColors":
-        count = getAllColorCount(target, location).reduce((acc, cur) => {
+        count = getAllColorCount(targetPlayer, getTraitsWithAttachments(location)).reduce((acc, cur) => {
           return acc += cur > 0 ? 1 : 0;
         }, 0);
       break;
       case "colorPair":
-        const reducedcolorCount: number[] = getAllColorCount(target, location);
+        const reducedcolorCount: number[] = getAllColorCount(targetPlayer, getTraitsWithAttachments(location));
         count = reducedcolorCount.reduce((acc, cur) => {
           return acc += Math.floor(cur / bonus.amount);
         }, 0);
       break;
       case "lowestColor":
-        const filteredColorCount: number[] = getAllColorCount(target, location).filter(e => e !== 0);
+        const filteredColorCount: number[] = getAllColorCount(targetPlayer, getTraitsWithAttachments(location)).filter(e => e !== 0);
         if(filteredColorCount.length > 1) {
           count = Math.min(...filteredColorCount);
         }
       break;
       case "mostColor":
-        // try highestIndex = colorCount.indexOf(Math.max(...colorCount));
         let highestValue = 0;
         let highestIndex = -1;
-        getAllColorCount(target, location).forEach((count, index) => {
+        getAllColorCount(targetPlayer, getTraitsWithAttachments(location)).forEach((count, index) => {
           if(count > highestValue) {
             highestValue = count;
             highestIndex = index;
@@ -209,9 +249,8 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
       case "most":
         let hasMost: boolean = false;
         if(bonus.location === "traitPile") {
-          const location = bonus.location;
           const playerPileCount: number[] = players.map(player => {
-            return player[location].length;
+            return getLocationSize(player["traitPile"]);
           }) || [];
           hasMost = playerPileCount.every((pileCount, pileIndex) => {
             if(pileIndex === index) {
@@ -220,20 +259,37 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
             return playerPileCount[index] > pileCount;
           });
         }
-        return hasMost ? bonus.value : 0;
+        return hasMost ? bonusValue : 0;
+      case "faceValue":
+        const value = getBonusTypeValue(id);
+        if(typeof value === "number") {
+          return value;
+        }
+        return 0;
+      case "greatestValue":
+        if(Array.isArray(location) && location.every(e => typeof e === "number")) {
+          return Math.max(...location);
+        }
+        return 0;
       default:
-        // bonus.type === "type" ?
-        count = location.reduce((acc, cur) => {
-          const trait: Trait | undefined = findTrait(cur);
+        if(bonus.type === "bionic") {
+          bonusType = "type";
+          if(getAttachment(id)){
+            bonusValue = 2;
+          }
+        }
+        const typeValue = getBonusTypeValue(id);
+        count = getTraitsWithAttachments(location).reduce((acc, cur) => {
+          const trait: Trait | undefined = getTraitData(cur);
           if(trait) {
-            return acc += checkBonusMatch(target, id, bonus, trait);
+            return acc += checkBonusMatch(targetPlayer, id, cur, bonusType, typeValue, trait);
           }
           return 0;
         }, 0);
-     }
+      }
     }
   }
-  return count * bonus.value;
+  return count * bonusValue;
 }
 
 function getAllColorCount(player: Player, location: string[]): number[] {
@@ -241,36 +297,66 @@ function getAllColorCount(player: Player, location: string[]): number[] {
   
   return colors.map(color =>
     location.reduce((acc, cur) => {
-      const trait: Trait | undefined = findTrait(cur);
+      const trait: Trait | undefined = getTraitData(cur);
+      const attachment = getAttachment(cur);
+
       if(trait) {
-        return acc + (getTraitModifier(player, trait, 'color').includes(color) ? 1 : 0);
+        return acc + (getTraitModifier<"color">(player, trait, 'color', attachment).includes(color) ? 1 : 0);
       }
       return acc;
     }, 0)
   );
 }
 
-function checkBonusMatch(player: Player, id: string, bonus: Bonus, trait: Trait): 1 | 0 {
-  if(bonus.type === 'all') {
+function checkBonusMatch(player: Player, pid: string, traitId: string, bonusType: string, typeValue: TypeValue, trait: Trait): 1 | 0 {
+  if(bonusType === 'all') {
       return 1;
   }
 
-  if(bonus.type === 'face') {
-    if(typeof bonus.typeValue === 'number') {
-      return trait.faceValue === bonus.typeValue ? 1 : 0;
-    } else if(bonus.typeValue === 'negative') {
-      return trait.faceValue !== null && trait.faceValue < 0 ? 1 : 0;
+  if(bonusType === 'face') {
+    if(typeof typeValue === 'number') {
+      return getFaceValue(trait, getAttachment(traitId)) === typeValue ? 1 : 0;
+    } else if(typeValue === 'negative') {
+      return getFaceValue(trait, getAttachment(traitId)) < 0 ? 1 : 0;
     }
-    console.error(`bonus typevalue ${bonus.typeValue} isn't a valid value.`);
+    console.error(`bonus typevalue ${typeValue} isn't a valid value.`);
     return 0;
   }
 
-  if(bonus.type && bonus.typeValue) {
-    if(bonus.type === 'name' || bonus.type === 'color' || bonus.type === 'type') {
-      if(typeof bonus.typeValue === 'string') {
-        return getTraitModifier(player, trait, bonus.type).includes(id.slice(2) || bonus.typeValue) ? 1 : 0;
+  if(bonusType && typeValue) {
+    if(bonusType=== 'name' || bonusType === 'color' || bonusType === 'type') {
+      if(isString(typeValue)) {
+        const attachment = findAttachment(pid); 
+        const traitMod = getTraitModifier<typeof trait[typeof bonusType]>(player, trait, bonusType, attachment);
+        if(!Array.isArray(typeValue)) {
+          if(!Array.isArray(traitMod)) {
+            return traitMod === typeValue ? 1 : 0;
+          }
+          return traitMod.includes(typeValue) ? 1 : 0;
+        }
+        return typeValue.some(e => traitMod.includes(e)) ? 1 : 0;
       }
+    }
+    if(bonusType === 'typeMissing' && typeof typeValue === 'string') {
+      const attachment = findAttachment(pid);
+      return getTraitModifier<"type">(player, trait, "type", attachment).includes(typeValue) ? 0 : 1;
     }
   }
   return 0;
+}
+
+function getBonusTypeValue(id: string) {
+  const trait = getTraitData(id);
+  const host = findTrait(id);
+  if(host) {
+    if(trait && trait.bonus && trait.bonus.typeValue === "host") {
+      if(trait.bonus.type === "color") {
+        return host["color"] as Color[];
+      }
+      if(trait.bonus.type === "faceValue") {
+        return host["faceValue"];
+      }
+    }
+    return host.bonus?.typeValue;
+  }
 }

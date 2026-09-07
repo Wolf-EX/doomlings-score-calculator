@@ -1,8 +1,6 @@
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { useEffect, useRef } from 'react';
 
-// Clean up this mess of code
-
 type Props = {
     fps: number;
     qrbox: number;

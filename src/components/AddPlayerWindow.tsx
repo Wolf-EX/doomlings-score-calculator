@@ -121,7 +121,6 @@ export default function AddPlayerWindow({
             }
 
             _playerData.name = name;
-            // const newPlayers = [...players, _playerData];
             players[selectedPlayer || 0] = _playerData;
             checkScore(players, selectedCatastrophe);
             setPlayers(players);

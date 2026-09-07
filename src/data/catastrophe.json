@@ -24,7 +24,7 @@
             "amount": 4,
             "value": -4
         },
-        "id": "0i"
+        "id": "02"
     },
     {
         "name": "DEUS EX MACHINA",
@@ -33,7 +33,7 @@
             "amount": 1,
             "value": 1
         },
-        "id": "02"
+        "id": "03"
     },
     {
         "name": "OVERPOPULATION",
@@ -56,11 +56,6 @@
         "id": "05"
     },
     {
-        "name": "GLACIAL MELTDOWN",
-        "bonus": null,
-        "id": "06"
-    },
-    {
         "name": "ICE AGE",
         "bonus": {
             "type": "color",
@@ -70,17 +65,7 @@
             "amount": 1,
             "value": -1
         },
-        "id": "07"
-    },
-    {
-        "name": "MEGA TSUNAMI",
-        "bonus": null,
-        "id": "08"
-    },
-    {
-        "name": "THE FOUR HORSEMEN",
-        "bonus": null,
-        "id": "09"
+        "id": "06"
     },
     {
         "name": "GREY GOO",
@@ -90,17 +75,7 @@
             "amount": 1,
             "value": 5
         },
-        "id": "0a"
-    },
-    {
-        "name": "MASS EXTINCTION",
-        "bonus": null,
-        "id": "0b"
-    },
-    {
-        "name": "NUCLEAR WINTER",
-        "bonus": null,
-        "id": "0c"
+        "id": "07"
     },
     {
         "name": "SOLAR FLARE",
@@ -112,7 +87,7 @@
             "amount": 1,
             "value": -1
         },
-        "id": "0d"
+        "id": "08"
     },
     {
         "name": "SUPER VOLCANO",
@@ -124,7 +99,7 @@
             "amount": 1,
             "value": -1
         },
-        "id": "0e"
+        "id": "09"
     },
     {
         "name": "AI TAKEOVER",
@@ -136,7 +111,7 @@
             "amount": 1,
             "value": 2
         },
-        "id": "0j"
+        "id": "0a"
     },
     {
         "name": "AI TAKEOVER (2E)",
@@ -148,12 +123,7 @@
             "amount": 1,
             "value": 2
         },
-        "id": "0f"
-    },
-    {
-        "name": "PULSE EVENT",
-        "bonus": null,
-        "id": "0g"
+        "id": "0b"
     },
     {
         "name": "RETROVIRUS",
@@ -165,6 +135,6 @@
             "amount": 1,
             "value": -1
         },
-        "id": "0h"
+        "id": "0c"
     }
 ]

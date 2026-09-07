@@ -77,9 +77,6 @@ export default function App() {
               const fromColor = removingTraitId.slice(2, 3);
               const toColor = removingTraitId.slice(3, 4);
               const index: number = players[selectedPlayer].modifier.findIndex((e: ModifierType) => {
-                /* if(typeof e === "object" && typeof e.type === "string" && typeof e.from === "string" && typeof e.to === "string") {
-                  return (e.type === "color" && e.from === fromColor && e.to == toColor)
-                } */
                 return (typeof e === "object" && e.type === "color" && e.from === fromColor && e.to == toColor);
               })
               players[selectedPlayer].modifier.splice(index, 1);
@@ -98,7 +95,6 @@ export default function App() {
       </header>
       <CatastropheButton players={players} selectedCatastrophe={selectedCatastrophe} setSelectedCatastrophe={setSelectedCatastrophe} /> 
       <main>
-        
         <PlayerTab 
           players={players}
           setPlayers={setPlayers}
@@ -127,7 +123,14 @@ export default function App() {
           setDiscardPile={setDiscardPile}
         />
         <PileTab selectedPile={selectedPile} setSelectedPile={setSelectedPile}/>
-        <CardList traitList={traitList} removeFn={removeTrait} />
+        <CardList
+          traitList={traitList}
+          selectedPile={selectedPile}
+          players={players}
+          setPlayers={setPlayers}
+          selectedPlayer={selectedPlayer}
+          selectedCatastrophe={selectedCatastrophe}
+          removeFn={removeTrait} />
       </main>
     </div>
   );

@@ -67,7 +67,7 @@
         "code": "05"
     },
     {
-        "name": "CHROMAOPHORES",
+        "name": "CHROMATOPHORES",
         "color": ["b"],
         "type": ["effect"],
         "faceValue": 0,
@@ -499,7 +499,7 @@
         "name": "ALTRUISTIC",
         "color": ["c"],
         "type": ["effect", "dropOfLife"],
-        "faceValue": null,
+        "faceValue": 0,
         "bonus": {
             "type": "size",
             "location": "genePool",
@@ -1195,5 +1195,72 @@
         "bonus": null,
         "effect": null,
         "code": "1P"
+    },
+    {
+        "name": "NEURAL LINK",
+        "color": ["b"],
+        "type": ["effect", "techling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "1Q"
+    },
+    {
+        "name": "BINARY",
+        "color": ["g"],
+        "type": ["effect", "techling"],
+        "faceValue": 0,
+        "bonus": null,
+        "effect": null,
+        "code": "1R"
+    },
+    {
+        "name": "GREY HAT",
+        "color": ["g"],
+        "type": ["effect", "techling"],
+        "faceValue": -1,
+        "bonus": null,
+        "effect": null,
+        "code": "1S"
+    },
+    {
+        "name": "HYPER-MYELINATION",
+        "color": ["p"],
+        "type": ["effect", "techling"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "greatestValue",
+            "location": "genePool",
+            "target": "all",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "1T"
+    },
+    {
+        "name": "BIONIC ARM",
+        "color": ["r"],
+        "type": ["effect", "techling"],
+        "faceValue": -2,
+         "bonus": {
+            "type": "bionic",
+            "typeValue": "techling",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "1U"
+    },
+    {
+        "name": "PHREAKISH EYES",
+        "color": ["r"],
+        "type": ["effect", "techling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "1V"
     }
 ]

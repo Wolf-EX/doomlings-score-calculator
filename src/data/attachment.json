@@ -1,0 +1,274 @@
+[
+    {
+        "name": "None",
+        "color": [],
+        "type": [],
+        "faceValue": 0,
+        "bonus": null,
+        "effect": null,
+        "code": "0"
+    },
+    {
+        "name": "CYBERNETIC",
+        "color": ["b"],
+        "type": ["effect", "attachment", "techling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": {
+            "type": "colorChange",
+            "value": "b"
+            },
+        "code": "1"
+    },
+    {
+        "name": "MECHA",
+        "color": ["b"],
+        "type": ["effect", "attachment", "techling"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "typeMissing",
+            "typeValue": "effect",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "2"
+    },
+    {
+        "name": "LYONIZATION",
+        "color": ["g"],
+        "type": ["effect", "attachment", "techling"],
+        "faceValue": 1,
+         "bonus": {
+            "type": "block",
+            "typeValue": "host",
+            "location": "traitPile",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "3"
+    },
+    {
+        "name": "NANO",
+        "color": ["g"],
+        "type": ["effect", "attachment", "techling"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "faceValue",
+            "typeValue": "host",
+            "location": "traitPile",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "4"
+    },
+    {
+        "name": "TRANSGENIC MODIFICATION",
+        "color": ["g"],
+        "type": ["techling", "attachment"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": {
+            "type": "colorChange",
+            "value": "g"
+        },
+        "code": "5"
+    },
+    {
+        "name": "RUGGEDIZED",
+        "color": ["c"],
+        "type": ["techling", "attachment"],
+        "faceValue": 4,
+        "bonus": null,
+        "effect": null,
+        "code": "6"
+    },
+    {
+        "name": "GMO",
+        "color": ["c"],
+        "type": ["techling", "attachment"],
+        "faceValue": -1,
+        "bonus": {
+            "type": "color",
+            "typeValue": "host",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "7"
+    },
+    {
+        "name": "ELECTROMAGNETIC",
+        "color": ["p"],
+        "type": ["techling", "attachment"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "8"
+    },
+    {
+        "name": "SUBDERMAL PLATING",
+        "color": ["p"],
+        "type": ["techling", "attachment"],
+        "faceValue": -1,
+        "bonus": null,
+        "effect": null,
+        "code": "9"
+    },
+    {
+        "name": "BONE REINFORCEMENT",
+        "color": ["red"],
+        "type": ["techling", "attachment"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "a"
+    },
+    {
+        "name": "ENCHANTED",
+        "color": ["b"],
+        "type": ["mythlings", "attachment"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "b"
+    },
+    {
+        "name": "CURSED",
+        "color": ["c"],
+        "type": ["mythlings", "attachment"],
+        "faceValue": -2,
+        "bonus": null,
+        "effect": null,
+        "code": "c"
+    },
+    {
+        "name": "SOLAR-POWERED",
+        "color": ["b"],
+        "type": ["effect", "attachment", "techling"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "faceValue",
+            "typeValue": "host",
+            "location": "traitPile",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "d"
+    },
+    {
+        "name": "BACK PROPAGATION",
+        "color": ["b"],
+        "type": ["effect", "attachment", "techling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": {
+            "type": "faceValueChange",
+            "value": 2
+        },
+        "code": "e"
+    },
+    {
+        "name": "CRYONICS",
+        "color": ["b"],
+        "type": ["effect", "attachment", "techling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": {
+            "type": "faceValueChange",
+            "value": 1
+        },
+        "code": "f"
+    },
+    {
+        "name": "SPEECH RECOGNITION",
+        "color": ["b"],
+        "type": ["techling", "attachment"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "g"
+    },
+    {
+        "name": "BIONIC LEG",
+        "color": ["g"],
+        "type": ["effect", "attachment", "techling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": {
+            "type": "faceValueChange",
+            "value": 4
+        },
+        "code": "h"
+    },
+    {
+        "name": "TERRARIUM",
+        "color": ["g"],
+        "type": ["techling", "attachment"],
+        "faceValue": 0,
+        "bonus": null,
+        "effect": null,
+        "code": "i"
+    },
+    {
+        "name": "FILAMENT",
+        "color": ["g"],
+        "type": ["techling", "attachment"],
+        "faceValue": 0,
+        "bonus": null,
+        "effect": null,
+        "code": "j"
+    },
+    {
+        "name": "SPRINGY",
+        "color": ["p"],
+        "type": ["techling", "attachment"],
+        "faceValue": 0,
+        "bonus": null,
+        "effect": null,
+        "code": "k"
+    },
+    {
+        "name": "TRANSISTOR",
+        "color": ["p"],
+        "type": ["techling", "attachment"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "l"
+    },
+    {
+        "name": "CORRODED",
+        "color": ["r"],
+        "type": ["techling", "attachment"],
+        "faceValue": -1,
+        "bonus": null,
+        "effect": null,
+        "code": "m"
+    },
+    {
+        "name": "REFURBISHED",
+        "color": ["r"],
+        "type": ["techling", "attachment"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "n"
+    },
+    {
+        "name": "TREADS",
+        "color": ["r"],
+        "type": ["techling", "attachment"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "o"
+    }
+]
