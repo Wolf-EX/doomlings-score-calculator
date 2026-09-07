@@ -156,7 +156,6 @@ export default function CardInput({players, setPlayers, selectedPlayer, setDisca
                 />
             }
             {
-                // title is temp and should be a variable
                 showDoubleColorPicker && <ColorPicker
                     title="Change traits of color"
                     show={showDoubleColorPicker}

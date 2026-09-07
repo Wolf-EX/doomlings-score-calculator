@@ -147,7 +147,6 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
   let location: string[] | number[] | number | undefined; // undefined is temp until I implement discard and hand
   
   if(bonus.target === 'opponent') {
-    // make target a new Player object and add all opponent piles to it
     targetPlayer = {
       id: index,
       name: "opponents",
@@ -233,7 +232,6 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
         }
       break;
       case "mostColor":
-        // try highestIndex = colorCount.indexOf(Math.max(...colorCount));
         let highestValue = 0;
         let highestIndex = -1;
         getAllColorCount(targetPlayer, getTraitsWithAttachments(location)).forEach((count, index) => {
