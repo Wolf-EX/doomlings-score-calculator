@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Catastrophe, Player } from '../data/types';
 import catastrophe from '../data/catastrophe.json' with {type: 'json'};
-import { checkScore } from '../util/score';
+import { checkScore, setCatastrophe } from '../util/score';
 import ListItem from './ListItem';
 
 type Props = {
     players: Player[];
+    discardPile: string[];
     selectedCatastrophe: Catastrophe;
     setSelectedCatastrophe: React.Dispatch<React.SetStateAction<Catastrophe>>;
 };
 
-export default function CatastropheButton({players, selectedCatastrophe, setSelectedCatastrophe}: Props) {
+export default function CatastropheButton({players, discardPile, selectedCatastrophe, setSelectedCatastrophe}: Props) {
     const [showCatastropheList, setShowCatastropheList] = useState<boolean>(false);
     const [catastropheName, setCatastropheName] = useState<string>("None");
 
@@ -31,10 +32,11 @@ export default function CatastropheButton({players, selectedCatastrophe, setSele
     }, [catastropheRef])
     
     function onCatastropheClick(catastropheItem: Catastrophe): void {
+        setCatastrophe(catastropheItem);
         setSelectedCatastrophe(catastropheItem);
         setCatastropheName(catastropheItem.name);
         setShowCatastropheList(false);
-        checkScore(players, catastropheItem);
+        checkScore(players, discardPile, catastropheItem);
     }
 
     function catastropheButtonClick(): void {

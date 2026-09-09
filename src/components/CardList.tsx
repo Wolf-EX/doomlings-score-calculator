@@ -14,12 +14,13 @@ type Props = {
     setPlayers: React.Dispatch<React.SetStateAction<Player[]>>;
     selectedPlayer: number;
     selectedPile: number;
+    discardPile: string[];
     selectedCatastrophe: Catastrophe;
     traitList: string[];
     removeFn: Function;
 };
 
-export default function CardList({traitList, selectedPile, players, setPlayers, selectedPlayer, selectedCatastrophe, removeFn}: Props) {
+export default function CardList({traitList, selectedPile, players, setPlayers, selectedPlayer, discardPile, selectedCatastrophe, removeFn}: Props) {
     const [targetTrait, setTargetTrait] = useState<{index: number, code: string}>({index: 0, code: ""}); // Item targeted for techlings attachment
     const [showAttachmentList, setShowAttachmentList] = useState<Boolean>(false);
 
@@ -43,7 +44,7 @@ export default function CardList({traitList, selectedPile, players, setPlayers, 
         setShowAttachmentList(false);
         setTargetTrait({index: 0,code: ""});
 
-        checkScore(players, selectedCatastrophe);
+        checkScore(players, discardPile, selectedCatastrophe);
     }
 
     return (

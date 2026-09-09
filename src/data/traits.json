@@ -425,10 +425,10 @@
     {
         "name": "SWARM",
         "color": ["g"],
-        "type": ["effect", "dropOfLife"],
+        "type": ["effect", "SWARM"],
         "faceValue": null,
         "bonus": {
-            "type": "name",
+            "type": "type",
             "typeValue": "SWARM",
             "location": "traitPile",
             "target": "all",
@@ -1096,10 +1096,10 @@
     {
         "name": "KIDNEY",
         "color": ["r"],
-        "type": ["effect"],
+        "type": ["effect", "KIDNEY"],
         "faceValue": null,
         "bonus": {
-            "type": "name",
+            "type": "type",
             "typeValue": "KIDNEY",
             "location": "traitPile",
             "target": "self",
@@ -1188,15 +1188,6 @@
         "code": "1O"
     },
     {
-        "name": "AUTOMIMICRY (3E)",
-        "color": ["b"],
-        "type": ["effect"],
-        "faceValue": -1,
-        "bonus": null,
-        "effect": null,
-        "code": "1P"
-    },
-    {
         "name": "NEURAL LINK",
         "color": ["b"],
         "type": ["effect", "techling"],
@@ -1262,5 +1253,493 @@
         "bonus": null,
         "effect": null,
         "code": "1V"
+    },
+    {
+        "name": "WILD",
+        "color": ["b", "g", "r", "p"],
+        "type": ["dominant"],
+        "faceValue": 4,
+        "bonus": null,
+        "effect": null,
+        "code": "1W"
+    },
+    {
+        "name": "MOTLEY",
+        "color": ["b", "g", "r", "p"],
+        "type": ["dominant", "effect"],
+        "faceValue": 4,
+        "bonus": null,
+        "effect": null,
+        "code": "1X"
+    },
+    {
+        "name": "ACROBATIC",
+        "color": ["p", "g"],
+        "type": [],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "1Y"
+    },
+    {
+        "name": "BLOOM",
+        "color": ["g", "b"],
+        "type": [],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "1Z"
+    },
+    {
+        "name": "BULLHEADED",
+        "color": ["r", "g"],
+        "type": [],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "20"
+    },
+    {
+        "name": "CURIOSITY",
+        "color": ["b", "r"],
+        "type": [],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "21"
+    },
+    {
+        "name": "HAND-WING",
+        "color": ["r", "p"],
+        "type": [],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "22"
+    },
+    {
+        "name": "MITOSIS",
+        "color": ["b", "p"],
+        "type": [],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "23"
+    },
+    {
+        "name": "FREE WILL",
+        "color": ["c"],
+        "type": ["effect"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": {
+            "popup": "single",
+            "type": "colorChange"
+        },
+        "code": "24"
+    },
+    {
+        "name": "TETRACHROMATIC",
+        "color": ["p"],
+        "type": ["effect"],
+        "faceValue": 4,
+        "bonus": {
+            "type": "color",
+            "typeValue": "c",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": -1
+        },
+        "effect": null,
+        "code": "25"
+    },
+    {
+        "name": "ELONGATED NECK",
+        "color": ["b"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "26"
+    },
+    {
+        "name": "PTEROSAUR",
+        "color": ["b"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "27"
+    },
+    {
+        "name": "TERROR BEAK",
+        "color": ["b"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 3,
+        "bonus": null,
+        "effect": null,
+        "code": "28"
+    },
+    {
+        "name": "BONY PLATES",
+        "color": ["g"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "29"
+    },
+    {
+        "name": "CERATOPSIAN HORNS",
+        "color": ["g"],
+        "type": ["dinoling"],
+        "faceValue": 4,
+        "bonus": null,
+        "effect": null,
+        "code": "2a"
+    },
+    {
+        "name": "FRONDS",
+        "color": ["g"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 0,
+        "bonus": null,
+        "effect": null,
+        "code": "2b"
+    },
+    {
+        "name": "THAGOMIZER",
+        "color": ["g"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "2c"
+    },
+    {
+        "name": "CRANIAL CREST (2E)",
+        "color": ["c"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 1,
+        "bonus": {
+            "type": "face",
+            "typeValue": "negative",
+            "location": "discardPile",
+            "amount": 3,
+            "value": 1
+        },
+        "effect": null,
+        "code": "1P"
+    },
+    {
+        "name": "DERMAL ARMOR",
+        "color": ["c"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "2d"
+    },
+    {
+        "name": "PYCOFIBERS",
+        "color": ["c"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "2e"
+    },
+    {
+        "name": "EGG PREDATION",
+        "color": ["p"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "2f"
+    },
+    {
+        "name": "PROTOFEATHERS",
+        "color": ["p"],
+        "type": ["effect", "dinoling"],
+        "faceValue": -2,
+        "bonus": null,
+        "effect": null,
+        "code": "2g"
+    },
+    {
+        "name": "TALONS",
+        "color": ["p"],
+        "type": ["dinoling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "2h"
+    },
+    {
+        "name": "CARNOSAUR JAW",
+        "color": ["r"],
+        "type": ["dominant", "effect", "dinoling"],
+        "faceValue": 9,
+        "bonus": null,
+        "effect": null,
+        "code": "2i"
+    },
+    {
+        "name": "CRANIAL CREST (1E)",
+        "color": ["c"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 4,
+        "bonus": {
+            "type": "diffColors",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": -1
+        },
+        "effect": null,
+        "code": "2j"
+    },
+    {
+        "name": "SERRATED TEETH (1E)",
+        "color": ["r"],
+        "type": ["effect", "dinoling"],
+        "faceValue": 5,
+        "bonus": {
+            "type": "type",
+            "typeValue": "dominant",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": -2
+        },
+        "effect": null,
+        "code": "2k"
+    },
+    {
+        "name": "SERRATED TEETH (2E)",
+        "color": ["r"],
+        "type": ["effect", "dinoling"],
+        "faceValue": -1,
+        "bonus": {
+            "type": "type",
+            "typeValue": "dominant",
+            "location": "discardPile",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "2l"
+    },
+    {
+        "name": "TINY ARMS",
+        "color": ["r"],
+        "type": ["effect", "dinoling"],
+        "faceValue": -1,
+        "bonus": {
+            "type": "type",
+            "typeValue": "dinoling",
+            "location": "discardPile",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "2m"
+    },
+    {
+        "name": "LEGENDARY",
+        "color": ["b"],
+        "type": ["dominant", "effect", "mythling"],
+        "faceValue": 8,
+        "bonus": null,
+        "effect": null,
+        "code": "2o"
+    },
+    {
+        "name": "DIAPHANOUS WINGS",
+        "color": ["b"],
+        "type": ["effect", "mythling"],
+        "faceValue": -1,
+        "bonus": null,
+        "effect": null,
+        "code": "2p"
+    },
+    {
+        "name": "ICY",
+        "color": ["b"],
+        "type": ["mythling"],
+        "faceValue": 3,
+        "bonus": null,
+        "effect": null,
+        "code": "2q"
+    },
+    {
+        "name": "RIGHTEOUS",
+        "color": ["b"],
+        "type": ["effect", "mythling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "2r"
+    },
+    {
+        "name": "ELVEN EARS",
+        "color": ["g"],
+        "type": ["effect", "mythling"],
+        "faceValue": -1,
+        "bonus": {
+            "type": "type",
+            "typeValue": "mythling",
+            "location": "traitPile",
+            "target": "all",
+            "amount": 1,
+            "value": 1
+        },
+        "effect": null,
+        "code": "2s"
+    },
+    {
+        "name": "FEY",
+        "color": ["g"],
+        "type": ["effect", "mythling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "2t"
+    },
+    {
+        "name": "ORCISH TUSKS (1E)",
+        "color": ["g"],
+        "type": ["effect", "mythling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "2u"
+    },
+    {
+        "name": "ORCISH TUSKS (2E)",
+        "color": [""],
+        "type": ["effect", "mythling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "2v"
+    },
+    {
+        "name": "DESTINED",
+        "color": ["c"],
+        "type": ["mythling"],
+        "faceValue": 4,
+        "bonus": null,
+        "effect": null,
+        "code": "2w"
+    },
+    {
+        "name": "EFFIGIAL",
+        "color": ["c"],
+        "type": ["effect", "mythling"],
+        "faceValue": -3,
+        "bonus": null,
+        "effect": null,
+        "code": "2x"
+    },
+    {
+        "name": "RAINBOW HORN (1E)",
+        "color": ["c"],
+        "type": ["effect", "mythling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": {
+            "type": "rainbow"
+        },
+        "code": "2y"
+    },
+    {
+        "name": "RAINBOW HORN (2E)",
+        "color": ["c"],
+        "type": ["effect", "mythling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "2z"
+    },
+    {
+        "name": "NECROMANTIC",
+        "color": ["p"],
+        "type": ["effect", "mythling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "2A"
+    },
+    {
+        "name": "WITCHY",
+        "color": ["p"],
+        "type": ["effect", "mythling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "2B"
+    },
+    {
+        "name": "ZOMBIFIED",
+        "color": ["p"],
+        "type": ["effect", "mythling"],
+        "faceValue": -2,
+        "bonus": null,
+        "effect": null,
+        "code": "2C"
+    },
+    {
+        "name": "ANCIENT",
+        "color": ["r"],
+        "type": ["effect", "mythling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "2D"
+    },
+    {
+        "name": "DRAGON HEART",
+        "color": ["r"],
+        "type": ["effect", "mythling"],
+        "faceValue": 1,
+        "bonus": {
+            "type": "diffColors",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 4,
+            "value": 4
+        },
+        "effect": null,
+        "code": "2E"
+    },
+    {
+        "name": "GELATINOUS (1E)",
+        "color": ["r"],
+        "type": ["effect", "mythling"],
+        "faceValue": 1,
+        "bonus": null,
+        "effect": null,
+        "code": "2F"
+    },
+    {
+        "name": "GELATINOUS (2E)",
+        "color": ["r"],
+        "type": ["effect", "mythling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "2G"
+    },
+    {
+        "name": "MIGHTY",
+        "color": ["r"],
+        "type": ["effect", "mythling"],
+        "faceValue": 2,
+        "bonus": null,
+        "effect": null,
+        "code": "2H"
     }
 ]

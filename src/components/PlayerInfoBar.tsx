@@ -14,6 +14,7 @@ type Props = {
     setSelectedPlayer: React.Dispatch<React.SetStateAction<number>>;
     selectedPlayerName: string;
     setSelectedPlayerName: React.Dispatch<React.SetStateAction<string>>;
+    discardPile: string[];
     selectedCatastrophe: Catastrophe;
     uId: {current: number};
 };
@@ -25,6 +26,7 @@ export default function PlayerInfoBar({
     setSelectedPlayer,
     selectedPlayerName,
     setSelectedPlayerName,
+    discardPile,
     selectedCatastrophe,
     uId
 }: Props) {
@@ -69,6 +71,7 @@ export default function PlayerInfoBar({
                 selectedPlayer={selectedPlayer}
                 selectedPlayerName={selectedPlayerName}
                 setSelectedPlayerName={setSelectedPlayerName}
+                discardPile={discardPile}
                 selectedCatastrophe={selectedCatastrophe}
                 showAddPlayer={showAddPlayer}
                 setShowAddPlayer={setShowAddPlayer}

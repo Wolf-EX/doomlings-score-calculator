@@ -23,7 +23,7 @@ export default function App() {
 
   useEffect(() => {
     setPlayers([]);
-    checkScore([], selectedCatastrophe);
+    checkScore([], discardPile);
     
     window.addEventListener('resize', resizeTraitList);
     
@@ -39,9 +39,9 @@ export default function App() {
   useEffect(() => {
     // move this to function that selects catastrophe instead(updates after page redraws)
     if(players.length > 0) {
-      checkScore(players, selectedCatastrophe);
+      checkScore(players, discardPile);
     }
-  }, [selectedCatastrophe, players]);
+  }, [players, selectedCatastrophe]);
 
   useEffect(() => {
     setTraitList(() => players.length > 0 ? getTraitPile() : []);
@@ -84,7 +84,7 @@ export default function App() {
       }
 
       setPlayers([...players]);
-      checkScore(players, selectedCatastrophe);
+      checkScore(players, discardPile);
     }
   }
 
@@ -93,7 +93,12 @@ export default function App() {
       <header>
         <p className='title'>Doomlings Score Calculator</p>
       </header>
-      <CatastropheButton players={players} selectedCatastrophe={selectedCatastrophe} setSelectedCatastrophe={setSelectedCatastrophe} /> 
+      <CatastropheButton
+        players={players}
+        discardPile={discardPile}
+        selectedCatastrophe={selectedCatastrophe}
+        setSelectedCatastrophe={setSelectedCatastrophe}
+      /> 
       <main>
         <PlayerTab 
           players={players}
@@ -102,6 +107,7 @@ export default function App() {
           setSelectedPlayer={setSelectedPlayer}
           selectedPlayerName={selectedPlayerName}
           setSelectedPlayerName={setSelectedPlayerName}
+          discardPile={discardPile}
           selectedCatastrophe={selectedCatastrophe}
           uId={uid}
         />
@@ -112,6 +118,7 @@ export default function App() {
           setSelectedPlayer={setSelectedPlayer}
           selectedPlayerName={selectedPlayerName}
           setSelectedPlayerName={setSelectedPlayerName}
+          discardPile={discardPile}
           selectedCatastrophe={selectedCatastrophe}
           uId={uid}
         />
@@ -120,6 +127,7 @@ export default function App() {
           setPlayers={setPlayers}
           selectedPlayer={selectedPlayer}
           selectedCatastrophe={selectedCatastrophe}
+          discardPile={discardPile}
           setDiscardPile={setDiscardPile}
         />
         <PileTab selectedPile={selectedPile} setSelectedPile={setSelectedPile}/>
@@ -129,6 +137,7 @@ export default function App() {
           players={players}
           setPlayers={setPlayers}
           selectedPlayer={selectedPlayer}
+          discardPile={discardPile}
           selectedCatastrophe={selectedCatastrophe}
           removeFn={removeTrait} />
       </main>
