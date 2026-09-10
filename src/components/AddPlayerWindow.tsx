@@ -12,7 +12,6 @@ type Props = {
     selectedPlayerName: string;
     setSelectedPlayerName: React.Dispatch<React.SetStateAction<string>>;
     discardPile: string[];
-    selectedCatastrophe: Catastrophe;
     showAddPlayer: Boolean;
     setShowAddPlayer: React.Dispatch<React.SetStateAction<Boolean>>;
     edit: Boolean;
@@ -26,7 +25,6 @@ export default function AddPlayerWindow({
     selectedPlayerName,
     setSelectedPlayerName,
     discardPile,
-    selectedCatastrophe,
     showAddPlayer,
     setShowAddPlayer,
     edit,
@@ -83,7 +81,7 @@ export default function AddPlayerWindow({
             _playerData.id = uId.current++;
             const newPlayers = [...players, _playerData];
 
-            checkScore(newPlayers, discardPile, selectedCatastrophe);
+            checkScore(newPlayers, discardPile);
             setPlayers(newPlayers);
             setGenePool(5);
             setCatastropheBonus(0);
@@ -124,7 +122,7 @@ export default function AddPlayerWindow({
 
             _playerData.name = name;
             players[selectedPlayer || 0] = _playerData;
-            checkScore(players, discardPile, selectedCatastrophe);
+            checkScore(players, discardPile);
             setPlayers(players);
             setGenePool(5);
             setCatastropheBonus(0);
@@ -191,6 +189,9 @@ export default function AddPlayerWindow({
                             {catastropheBonus}
                             <button onClick={() => setCatastropheBonus(Math.min(catastropheBonus + 1, 10))}>+</button>
                         </div>
+                        {/* <div className="add-player-popup-gene-container">
+                            Sign Button Here
+                        </div> */}
                         {
                             !edit && <div className="qr-scanner-container">
                                 <div className="qr-scanner-img-container" onClick={() => setUseQr(true)}>

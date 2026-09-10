@@ -304,6 +304,11 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
   return Math.floor(count / bonus.amount) * bonusValue;
 }
 
+// implement
+function getColorCount(): number {
+  return 0;
+}
+
 function getAllColorCount(player: Player, location: string[]): number[] {
   const colors: Color[] = ['r', 'b', 'g', 'p'];
   let rainbowTraitsCount: number = 0;

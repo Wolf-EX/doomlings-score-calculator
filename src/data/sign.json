@@ -1,0 +1,40 @@
+[
+    {
+        "name": "none",
+        "id": "00"
+    },
+    {
+        "name": "THE BILBIES",
+        "bonusType": "count",
+        "bonus": [
+            {
+                "typeValue": ["dominant"],
+                "typeCount": [1],
+                "points": 4
+            },
+            {
+                "typeValue": ["dominant"],
+                "typeCount": [0],
+                "points": 10
+            }
+        ],
+        "id": "01"
+    },
+    {
+        "name": "THE CABOCHON",
+        "bonusType": "range",
+        "bonus": [
+            {
+                "typeValue": ["r"],
+                "typeCount": [1, 2],
+                "points": 3
+            },
+            {
+                "typeValue": ["r"],
+                "typeCount": [0],
+                "points": 6
+            }
+        ],
+        "id": "02"
+    }
+]

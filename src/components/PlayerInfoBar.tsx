@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Catastrophe, Player } from "../data/types";
+import type { Player } from "../data/types";
 import DeleteButton from "./DeleteButton";
 import Popup from "./Popup";
 import QRCode from "react-qr-code";
@@ -15,7 +15,6 @@ type Props = {
     selectedPlayerName: string;
     setSelectedPlayerName: React.Dispatch<React.SetStateAction<string>>;
     discardPile: string[];
-    selectedCatastrophe: Catastrophe;
     uId: {current: number};
 };
 
@@ -27,7 +26,6 @@ export default function PlayerInfoBar({
     selectedPlayerName,
     setSelectedPlayerName,
     discardPile,
-    selectedCatastrophe,
     uId
 }: Props) {
     const [showDeleteWarning, setShowDeleteWarning] = useState<Boolean>(false);
@@ -72,7 +70,6 @@ export default function PlayerInfoBar({
                 selectedPlayerName={selectedPlayerName}
                 setSelectedPlayerName={setSelectedPlayerName}
                 discardPile={discardPile}
-                selectedCatastrophe={selectedCatastrophe}
                 showAddPlayer={showAddPlayer}
                 setShowAddPlayer={setShowAddPlayer}
                 edit={true}

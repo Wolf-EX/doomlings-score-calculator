@@ -29,14 +29,14 @@ export default function CatastropheButton({players, discardPile, selectedCatastr
         return () => {
             document.removeEventListener("mouseup", onOuterClick);
         }
-    }, [catastropheRef])
+    }, [catastropheRef]);
     
     function onCatastropheClick(catastropheItem: Catastrophe): void {
         setCatastrophe(catastropheItem);
         setSelectedCatastrophe(catastropheItem);
         setCatastropheName(catastropheItem.name);
         setShowCatastropheList(false);
-        checkScore(players, discardPile, catastropheItem);
+        checkScore(players, discardPile);
     }
 
     function catastropheButtonClick(): void {
