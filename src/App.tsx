@@ -108,7 +108,6 @@ export default function App() {
           selectedPlayerName={selectedPlayerName}
           setSelectedPlayerName={setSelectedPlayerName}
           discardPile={discardPile}
-          selectedCatastrophe={selectedCatastrophe}
           uId={uid}
         />
         <PlayerInfoBar
@@ -119,14 +118,12 @@ export default function App() {
           selectedPlayerName={selectedPlayerName}
           setSelectedPlayerName={setSelectedPlayerName}
           discardPile={discardPile}
-          selectedCatastrophe={selectedCatastrophe}
           uId={uid}
         />
         <CardInput
           players={players}
           setPlayers={setPlayers}
           selectedPlayer={selectedPlayer}
-          selectedCatastrophe={selectedCatastrophe}
           discardPile={discardPile}
           setDiscardPile={setDiscardPile}
         />
@@ -138,7 +135,6 @@ export default function App() {
           setPlayers={setPlayers}
           selectedPlayer={selectedPlayer}
           discardPile={discardPile}
-          selectedCatastrophe={selectedCatastrophe}
           removeFn={removeTrait} />
       </main>
     </div>

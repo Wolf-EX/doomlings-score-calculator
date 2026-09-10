@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AutoCompleteItem from "./AutoCompleteItem";
 import traits from '../data/traits.json' with {type: 'json'};
-import type { Catastrophe, Color, Player, Trait } from "../data/types";
+import type { Color, Player, Trait } from "../data/types";
 import { mod } from "../util/util";
 import { checkScore } from "../util/score";
 import ColorPicker from "./ColorPicker";
@@ -12,10 +12,9 @@ type Props = {
     selectedPlayer: number;
     discardPile: string[];
     setDiscardPile: React.Dispatch<React.SetStateAction<string[]>>;
-    selectedCatastrophe: Catastrophe;
 };
 
-export default function CardInput({players, setPlayers, selectedPlayer, discardPile, setDiscardPile, selectedCatastrophe}: Props) {
+export default function CardInput({players, setPlayers, selectedPlayer, discardPile, setDiscardPile}: Props) {
     const [cardName, setCardName] = useState<string>('');
     const [currentTrait, setCurrentTrait] = useState<Trait>();
     const [autoCompleteList, setAutoCompleteList] = useState<string[]>([]);
@@ -59,7 +58,7 @@ export default function CardInput({players, setPlayers, selectedPlayer, discardP
             color[0] = ['r', 'b', 'g', 'p'][selectedColor[0]] as Color;
             players[selectedPlayer].traitPile.push(currentTrait.code+color.slice(0, 1));
             setPlayers([...players]);
-            checkScore(players, discardPile, selectedCatastrophe);
+            checkScore(players, discardPile);
         }
         setShowColorPicker(false);
     }
@@ -74,7 +73,7 @@ export default function CardInput({players, setPlayers, selectedPlayer, discardP
             }
             players[selectedPlayer].traitPile.push(currentTrait.code+color[0].slice(0, 1)+color[1].slice(0, 1));
             setPlayers([...players]);
-            checkScore(players, discardPile, selectedCatastrophe);
+            checkScore(players, discardPile);
         }
         setShowDoubleColorPicker(false);
     }
@@ -91,15 +90,15 @@ export default function CardInput({players, setPlayers, selectedPlayer, discardP
                     setShowDoubleColorPicker(true);
                 } else {
                     players[selectedPlayer].traitPile.push(trait.code);
-                    checkScore(players, discardPile, selectedCatastrophe);
+                    checkScore(players, discardPile);
                     setPlayers([...players]);
                 }
             } else if(location === 1) {
                 players[selectedPlayer].hand.push(trait.code);
-                checkScore(players, discardPile, selectedCatastrophe);
+                checkScore(players, discardPile);
                 setPlayers([...players]);
             } else if(location === 2) {
-                checkScore(players, [...discardPile, trait.code], selectedCatastrophe);
+                checkScore(players, [...discardPile, trait.code]);
                 setDiscardPile(prev => [...prev, trait.code]);
             }
         }

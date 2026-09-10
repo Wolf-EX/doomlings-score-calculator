@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import traits from '../data/traits.json' with {type: 'json'};
 import attachments from '../data/attachment.json' with {type: 'json'};
 import CardItem from './CardItem';
 import ListItem from './ListItem';
-import type { Catastrophe, Player, Trait } from '../data/types';
+import type { Player, Trait } from '../data/types';
 import { findAttachment } from '../util/util';
 import { checkScore } from '../util/score';
 
@@ -15,14 +15,29 @@ type Props = {
     selectedPlayer: number;
     selectedPile: number;
     discardPile: string[];
-    selectedCatastrophe: Catastrophe;
     traitList: string[];
     removeFn: Function;
 };
 
-export default function CardList({traitList, selectedPile, players, setPlayers, selectedPlayer, discardPile, selectedCatastrophe, removeFn}: Props) {
+export default function CardList({traitList, selectedPile, players, setPlayers, selectedPlayer, discardPile, removeFn}: Props) {
     const [targetTrait, setTargetTrait] = useState<{index: number, code: string}>({index: 0, code: ""}); // Item targeted for techlings attachment
     const [showAttachmentList, setShowAttachmentList] = useState<Boolean>(false);
+
+    const attachmentListRef: React.RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        function onOuterClick(event: MouseEvent) {
+            if(attachmentListRef.current && event.target instanceof Node && !attachmentListRef.current.contains(event.target)) {
+                setShowAttachmentList(false);
+            }
+        }
+
+        document.addEventListener("mouseup", onOuterClick);
+
+        return () => {
+            document.removeEventListener("mouseup", onOuterClick);
+        }
+    }, [attachmentListRef]);
 
     function attachmentOnClick(trait: Trait) {
         const attachmentCode: string = trait.code;
@@ -44,13 +59,13 @@ export default function CardList({traitList, selectedPile, players, setPlayers, 
         setShowAttachmentList(false);
         setTargetTrait({index: 0,code: ""});
 
-        checkScore(players, discardPile, selectedCatastrophe);
+        checkScore(players, discardPile);
     }
 
     return (
         <div>
             {
-                showAttachmentList && <div className='list-container modal window'>
+                showAttachmentList && <div ref={attachmentListRef} className='list-container modal window'>
                 {
                     attachmentList.map((trait: Trait, index) =>
                         <ListItem 
