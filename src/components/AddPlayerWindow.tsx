@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import qrlogo from "../assets/qr-icon.png";
-import type { Catastrophe, Player } from "../data/types";
+import type { Player } from "../data/types";
 import Popup from "./Popup";
 import QRScanner from "./QRScanner";
 import { checkScore } from "../util/score";
