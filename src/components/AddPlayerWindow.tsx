@@ -11,6 +11,7 @@ type Props = {
     selectedPlayer?: number;
     selectedPlayerName: string;
     setSelectedPlayerName: React.Dispatch<React.SetStateAction<string>>;
+    discardPile: string[];
     selectedCatastrophe: Catastrophe;
     showAddPlayer: Boolean;
     setShowAddPlayer: React.Dispatch<React.SetStateAction<Boolean>>;
@@ -24,13 +25,14 @@ export default function AddPlayerWindow({
     selectedPlayer,
     selectedPlayerName,
     setSelectedPlayerName,
+    discardPile,
     selectedCatastrophe,
     showAddPlayer,
     setShowAddPlayer,
     edit,
     uId
 }: Props) {
-    const [genePool, setGenePool] = useState<number>(5);
+    const [genePool, setGenePool] = useState<number | number[]>(5);
     const [catastropheBonus, setCatastropheBonus] = useState<number>(0);
     const [useQr, setUseQr] = useState<Boolean>(false);
 
@@ -81,7 +83,7 @@ export default function AddPlayerWindow({
             _playerData.id = uId.current++;
             const newPlayers = [...players, _playerData];
 
-            checkScore(newPlayers, selectedCatastrophe);
+            checkScore(newPlayers, discardPile, selectedCatastrophe);
             setPlayers(newPlayers);
             setGenePool(5);
             setCatastropheBonus(0);
@@ -122,7 +124,7 @@ export default function AddPlayerWindow({
 
             _playerData.name = name;
             players[selectedPlayer || 0] = _playerData;
-            checkScore(players, selectedCatastrophe);
+            checkScore(players, discardPile, selectedCatastrophe);
             setPlayers(players);
             setGenePool(5);
             setCatastropheBonus(0);
@@ -179,9 +181,9 @@ export default function AddPlayerWindow({
                         />
                         <div className="add-player-popup-gene-container">
                             <p>Gene Pool:</p>
-                            <button onClick={() => setGenePool(Math.max(genePool - 1, 0))}>-</button>
+                            <button onClick={() => setGenePool(Math.max(genePool as number - 1, 0))}>-</button>
                             {genePool}
-                            <button onClick={() => setGenePool(Math.min(genePool + 1, 8))}>+</button>
+                            <button onClick={() => setGenePool(Math.min(genePool as number + 1, 8))}>+</button>
                         </div>
                         <div className="add-player-popup-gene-container">
                             <p>Catastrophy Bonus:</p>

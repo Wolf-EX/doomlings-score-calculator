@@ -73,7 +73,7 @@
             "type": "most",
             "location": "traitPile",
             "amount": 1,
-            "value": 5
+            "value": -5
         },
         "id": "07"
     },
@@ -130,6 +130,18 @@
         "bonus": {
             "type": "color",
             "typeValue": "g",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": -1
+        },
+        "id": "0c"
+    },
+    {
+        "name": "IMPACT EVENT",
+        "bonus": {
+            "type": "faceHigh",
+            "typeValue": 3,
             "location": "traitPile",
             "target": "self",
             "amount": 1,

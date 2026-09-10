@@ -10,11 +10,12 @@ type Props = {
     players: Player[];
     setPlayers: React.Dispatch<React.SetStateAction<Player[]>>;
     selectedPlayer: number;
+    discardPile: string[];
     setDiscardPile: React.Dispatch<React.SetStateAction<string[]>>;
     selectedCatastrophe: Catastrophe;
 };
 
-export default function CardInput({players, setPlayers, selectedPlayer, setDiscardPile, selectedCatastrophe}: Props) {
+export default function CardInput({players, setPlayers, selectedPlayer, discardPile, setDiscardPile, selectedCatastrophe}: Props) {
     const [cardName, setCardName] = useState<string>('');
     const [currentTrait, setCurrentTrait] = useState<Trait>();
     const [autoCompleteList, setAutoCompleteList] = useState<string[]>([]);
@@ -58,7 +59,7 @@ export default function CardInput({players, setPlayers, selectedPlayer, setDisca
             color[0] = ['r', 'b', 'g', 'p'][selectedColor[0]] as Color;
             players[selectedPlayer].traitPile.push(currentTrait.code+color.slice(0, 1));
             setPlayers([...players]);
-            checkScore(players, selectedCatastrophe);
+            checkScore(players, discardPile, selectedCatastrophe);
         }
         setShowColorPicker(false);
     }
@@ -73,7 +74,7 @@ export default function CardInput({players, setPlayers, selectedPlayer, setDisca
             }
             players[selectedPlayer].traitPile.push(currentTrait.code+color[0].slice(0, 1)+color[1].slice(0, 1));
             setPlayers([...players]);
-            checkScore(players, selectedCatastrophe);
+            checkScore(players, discardPile, selectedCatastrophe);
         }
         setShowDoubleColorPicker(false);
     }
@@ -90,14 +91,15 @@ export default function CardInput({players, setPlayers, selectedPlayer, setDisca
                     setShowDoubleColorPicker(true);
                 } else {
                     players[selectedPlayer].traitPile.push(trait.code);
-                    checkScore(players, selectedCatastrophe);
+                    checkScore(players, discardPile, selectedCatastrophe);
                     setPlayers([...players]);
                 }
             } else if(location === 1) {
                 players[selectedPlayer].hand.push(trait.code);
-                checkScore(players, selectedCatastrophe);
+                checkScore(players, discardPile, selectedCatastrophe);
                 setPlayers([...players]);
             } else if(location === 2) {
+                checkScore(players, [...discardPile, trait.code], selectedCatastrophe);
                 setDiscardPile(prev => [...prev, trait.code]);
             }
         }

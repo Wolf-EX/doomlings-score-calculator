@@ -1,20 +1,37 @@
 import type { Player, Trait, Bonus, Color, Catastrophe, ModifierType, TypeValue } from "../data/types";
 import { findAttachment, getLocationSize, getTraitsWithAttachments, getTraitData, getAttachment, findTrait, isString } from "./util";
 
-export function checkScore(players: Player[], catastrophe: Catastrophe): number[] {
+let _discardPile: string[] = [];
+let _catastrophe: Catastrophe = {name: 'None', bonus: null, id: '00'};
+
+export function setCatastrophe(catastraphe: Catastrophe) {
+  _catastrophe = catastraphe;
+}
+
+export function checkScore(players: Player[], discardPile: string[]): number[] {
+  _discardPile = discardPile;
   const playerScoreModifier: number[] = Array(players.length).fill(0);
   players.forEach((player: Player, index: number) => {
     player.score = getTraitsWithAttachments(player.traitPile).reduce((acc: number, cur: string) => 
-      acc + getTraitTotalValue(players, index, cur, catastrophe, playerScoreModifier), 0);
+      acc + getTraitTotalValue(players, index, cur, playerScoreModifier), 0);
 
-    player.score += getCatastropheValue(players, index, catastrophe) + playerScoreModifier[index];
+    player.score += getCatastropheValue(players, index) + playerScoreModifier[index];
   });
   return players.map(player => player.score);
 }
 
 type bonusTypes = "name" | "color" | "type";
-function getTraitModifier<T>(player: Player, trait: Trait, type: bonusTypes, attachment: Trait | undefined): T {
+function getTraitModifier<T>(player: Player, trait: Trait, id: string, type: bonusTypes, attachment: Trait | undefined): T {
   let traitType = structuredClone(trait[type]);
+
+  if(trait.effect?.type === "colorChange" && id) {
+    traitType = id[2];
+  } else if(trait.effect?.type === "rainbow") {
+    const highestColor = getAllColorCount(player, getTraitsWithAttachments(player.traitPile));
+    const maxColor = Math.max(...highestColor);
+    const maxColorIndex = highestColor.indexOf(maxColor) === highestColor.lastIndexOf(maxColor) ? highestColor.indexOf(maxColor) : -1;
+    traitType = maxColorIndex !== -1 ? ['r', 'b', 'g', 'p'][maxColorIndex] : 'c';
+  }
 
   if(attachment && attachment.effect) {
     // color
@@ -40,65 +57,67 @@ function getTraitModifier<T>(player: Player, trait: Trait, type: bonusTypes, att
 }
 
 function getFaceValue(trait: Trait, attachment: Trait | undefined): number {
-  if(attachment && attachment.effect && attachment.effect.type === "faceValueChange" && typeof attachment.effect.value === "number") {
+  if(attachment?.effect?.type === "faceValueChange" && typeof attachment.effect.value === "number") {
     return attachment.effect.value;
   }
   return trait.faceValue;
 }
 
-export function getCatastropheValue(players: Player[], index: number, catastrophe: Catastrophe): number {
+export function getCatastropheValue(players: Player[], index: number): number {
   const player: Player = players[index];
-  if(catastrophe.bonus){
-    switch(catastrophe.bonus.type) {
+  const location = _catastrophe.bonus?.location || "traitPile";
+
+  if(_catastrophe.bonus){
+    switch(_catastrophe.bonus.type) {
       case "missingColor":
         const colors = getAllColorCount(player, getTraitsWithAttachments(player.traitPile));
         return colors.reduce((acc: number, cur: number) => acc += cur === 0 ? -2 : 0, 0);
       case "color":
-        const location = catastrophe.bonus.location || "traitPile";
         if(location !== "discardPile" && location !== "genePool") {
           const colorCount: number = getAllColorCount(player,
-              getTraitsWithAttachments(player[location]))[["r", "b", "g", "p"].indexOf(catastrophe.bonus.typeValue as Color)];
-              return colorCount * catastrophe.bonus.value;
+              getTraitsWithAttachments(player[location]))[["r", "b", "g", "p"].indexOf(_catastrophe.bonus.typeValue as Color)];
+              return colorCount * _catastrophe.bonus.value;
         }
-      break;
+        break;
       case "bonusValue":
-        return player.catastropheBonus * catastrophe.bonus.value;
+        return player.catastropheBonus * _catastrophe.bonus.value;
       case "fewest": case "most":
-        if(catastrophe.bonus.location === "traitPile") {
+        if(_catastrophe.bonus.location === "traitPile") {
           const playerPileCount: number[] = players.map(player => {
             return getLocationSize(player["traitPile"]);
           }) || [];
-          return catastrophe.bonus.type === "most" ?
-            getLocationSize(player["traitPile"]) === Math.max(...playerPileCount) ? catastrophe.bonus.value : 0 :
-            getLocationSize(player["traitPile"]) === Math.min(...playerPileCount) ? catastrophe.bonus.value : 0;
+          return _catastrophe.bonus.type === "most" ?
+            getLocationSize(player["traitPile"]) === Math.max(...playerPileCount) ? _catastrophe.bonus.value : 0 :
+            getLocationSize(player["traitPile"]) === Math.min(...playerPileCount) ? _catastrophe.bonus.value : 0;
         }
-      break;
+        break;
       case "colorsCount":
-        if(catastrophe.bonus.location === "traitPile") {
-          const colorCount: number[] = getAllColorCount(player, getTraitsWithAttachments(player[catastrophe.bonus.location]));
-          if(Math.max(...colorCount) >= catastrophe.bonus.amount) {
-            return catastrophe.bonus.value;
+        if(_catastrophe.bonus.location === "traitPile") {
+          const colorCount: number[] = getAllColorCount(player, getTraitsWithAttachments(player[_catastrophe.bonus.location]));
+          if(Math.max(...colorCount) >= _catastrophe.bonus.amount) {
+            return _catastrophe.bonus.value;
           }
         }
-      break;
+        break;
+      case "faceHigh":
+        return countBonusType(players, index, "-1", _catastrophe.bonus);
       default: return 0;
     }
   }
   return 0;
 }
 
-export function getTraitTotalValue(players: Player[], index: number, id: string, catastrophe: Catastrophe, modifier: number[]): number {
+export function getTraitTotalValue(players: Player[], index: number, id: string, modifier: number[]): number {
   const trait: Trait | undefined = getTraitData(id);
   const attachment = getAttachment(id);
   if(trait === undefined) {
     return 0;
   }
 
-
   // AI TAKEOVER
-  if(catastrophe?.bonus?.type === "colorBlock" || (catastrophe?.bonus?.type === "colorBlock2" && !trait.type.includes("dominant"))) {
-    if(getTraitModifier<"color">(players[index], trait, "color", attachment).includes(catastrophe?.bonus?.typeValue as Color)) {
-      return catastrophe?.bonus?.value;
+  if(_catastrophe?.bonus?.type === "colorBlock" || (_catastrophe?.bonus?.type === "colorBlock2" && !trait.type.includes("dominant"))) {
+    if(getTraitModifier<"color">(players[index], trait, id, "color", attachment).includes(_catastrophe?.bonus?.typeValue as Color)) {
+      return _catastrophe?.bonus?.value;
     }
   }
   
@@ -158,17 +177,6 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
       catastropheBonus: 0
     };
 
-    /*
-      if(bonus.location && bonus.location !== 'discardPile') {
-        location = target?.[bonus.location];
-        players.forEach((e, i) => {
-          if(i !== index) {
-            target[location].push(...e.traitPile);
-          }
-        });
-      }
-    */
-
     players.forEach((e, i) => {
       if(i !== index) {
         targetPlayer.traitPile.push(...e.traitPile); // do i need to set the target.traitPile to check location?
@@ -200,8 +208,12 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
       });
     }
   } else {
-    if(bonus.location && bonus.location !== "discardPile") {
-      location = targetPlayer[bonus.location];
+    if(bonus.location) {
+      if(bonus.location !== "discardPile") {
+        location = targetPlayer[bonus.location];
+      } else {
+        location = _discardPile;
+      }
     }
   }
 
@@ -218,19 +230,19 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
         count = getAllColorCount(targetPlayer, getTraitsWithAttachments(location)).reduce((acc, cur) => {
           return acc += cur > 0 ? 1 : 0;
         }, 0);
-      break;
+        break;
       case "colorPair":
         const reducedcolorCount: number[] = getAllColorCount(targetPlayer, getTraitsWithAttachments(location));
         count = reducedcolorCount.reduce((acc, cur) => {
           return acc += Math.floor(cur / bonus.amount);
         }, 0);
-      break;
+        break;
       case "lowestColor":
         const filteredColorCount: number[] = getAllColorCount(targetPlayer, getTraitsWithAttachments(location)).filter(e => e !== 0);
         if(filteredColorCount.length > 1) {
           count = Math.min(...filteredColorCount);
         }
-      break;
+        break;
       case "mostColor":
         let highestValue = 0;
         let highestIndex = -1;
@@ -278,7 +290,7 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
             bonusValue = 2;
           }
         }
-        const typeValue = getBonusTypeValue(id);
+        const typeValue = getBonusTypeValue(id) || bonus.typeValue;
         count = getTraitsWithAttachments(location).reduce((acc, cur) => {
           const trait: Trait | undefined = getTraitData(cur);
           if(trait) {
@@ -289,23 +301,38 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
       }
     }
   }
-  return count * bonusValue;
+  return Math.floor(count / bonus.amount) * bonusValue;
 }
 
 function getAllColorCount(player: Player, location: string[]): number[] {
   const colors: Color[] = ['r', 'b', 'g', 'p'];
-  
-  return colors.map(color =>
-    location.reduce((acc, cur) => {
-      const trait: Trait | undefined = getTraitData(cur);
-      const attachment = getAttachment(cur);
+  let rainbowTraitsCount: number = 0;
+
+  const allColors = colors.map((color, index) =>
+    location.reduce((acc, id) => {
+      const trait: Trait | undefined = getTraitData(id);
+      const attachment = getAttachment(id);
 
       if(trait) {
-        return acc + (getTraitModifier<"color">(player, trait, 'color', attachment).includes(color) ? 1 : 0);
+        if(trait.effect?.type === "rainbow") {
+          if(index === 0) {
+            rainbowTraitsCount++;
+          }
+          return acc;
+        }
+        return acc + (getTraitModifier<"color">(player, trait, id, 'color', attachment).includes(color) ? 1 : 0);
       }
       return acc;
     }, 0)
   );
+
+  const maxColor = Math.max(...allColors);
+  const maxColorIndex = allColors.indexOf(maxColor) === allColors.lastIndexOf(maxColor) ? allColors.indexOf(maxColor) : -1;
+  if(maxColorIndex !== -1) {
+    allColors[maxColorIndex] += rainbowTraitsCount;
+  }
+
+  return allColors;
 }
 
 function checkBonusMatch(player: Player, pid: string, traitId: string, bonusType: string, typeValue: TypeValue, trait: Trait): 1 | 0 {
@@ -323,11 +350,15 @@ function checkBonusMatch(player: Player, pid: string, traitId: string, bonusType
     return 0;
   }
 
+  if(bonusType === 'faceHigh' && typeof typeValue === 'number') {
+    return getFaceValue(trait, getAttachment(traitId)) >= typeValue ? 1 : 0;
+  }
+
   if(bonusType && typeValue) {
     if(bonusType=== 'name' || bonusType === 'color' || bonusType === 'type') {
       if(isString(typeValue)) {
-        const attachment = findAttachment(pid); 
-        const traitMod = getTraitModifier<typeof trait[typeof bonusType]>(player, trait, bonusType, attachment);
+        const attachment = findAttachment(pid);
+        const traitMod = getTraitModifier<typeof trait[typeof bonusType]>(player, trait, traitId, bonusType, attachment);
         if(!Array.isArray(typeValue)) {
           if(!Array.isArray(traitMod)) {
             return traitMod === typeValue ? 1 : 0;
@@ -339,7 +370,7 @@ function checkBonusMatch(player: Player, pid: string, traitId: string, bonusType
     }
     if(bonusType === 'typeMissing' && typeof typeValue === 'string') {
       const attachment = findAttachment(pid);
-      return getTraitModifier<"type">(player, trait, "type", attachment).includes(typeValue) ? 0 : 1;
+      return getTraitModifier<"type">(player, trait, traitId, "type", attachment).includes(typeValue) ? 0 : 1;
     }
   }
   return 0;
