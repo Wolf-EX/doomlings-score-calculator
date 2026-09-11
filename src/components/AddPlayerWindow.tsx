@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import type { Player } from "../data/types";
 import qrlogo from "../assets/qr-icon.png";
-import type { Catastrophe, Player } from "../data/types";
+import signs from "../data/sign.json" with {type: 'json'}
 import Popup from "./Popup";
 import QRScanner from "./QRScanner";
 import { checkScore } from "../util/score";
+import ListItem from "./ListItem";
+
+const signsList = signs;
 
 type Props = {
     players: Player[];
@@ -32,7 +36,25 @@ export default function AddPlayerWindow({
 }: Props) {
     const [genePool, setGenePool] = useState<number | number[]>(5);
     const [catastropheBonus, setCatastropheBonus] = useState<number>(0);
+    const [showSignsList, setShowSignsList] = useState<boolean>(false);
+    const [sign, setSign] = useState(signsList[0]);
     const [useQr, setUseQr] = useState<Boolean>(false);
+
+    const signListRef: React.RefObject<HTMLDivElement | null> = useRef(null);
+
+     useEffect(() => {
+        function onOuterClick(event: MouseEvent) {
+            if(signListRef.current && event.target instanceof Node && !signListRef.current.contains(event.target)) {
+                setShowSignsList(false);
+            }
+        }
+
+        document.addEventListener("mouseup", onOuterClick);
+
+        return () => {
+            document.removeEventListener("mouseup", onOuterClick);
+        }
+    }, [signListRef]);
 
     useEffect(() => {
         const player: Player | null = selectedPlayer !== undefined ? players[selectedPlayer] : null;
@@ -40,10 +62,12 @@ export default function AddPlayerWindow({
             setSelectedPlayerName(player.name);
             setGenePool(player.genePool);
             setCatastropheBonus(player.catastropheBonus);
+            setSign(player.sign);
         } else {
             setSelectedPlayerName("");
             setGenePool(5);
             setCatastropheBonus(0);
+            setSign(signsList[0]);
         }
     }, [showAddPlayer])
 
@@ -64,7 +88,8 @@ export default function AddPlayerWindow({
                 "traitPile": [],
                 "hand": [],
                 "modifier": [],
-                "catastropheBonus": catastropheBonus
+                "catastropheBonus": catastropheBonus,
+                "sign": sign
             }
 
             // Checks if duplicate playername and adds unique number to end of it
@@ -99,7 +124,8 @@ export default function AddPlayerWindow({
                 "traitPile": [],
                 "hand": [],
                 "modifier": [],
-                "catastropheBonus": catastropheBonus
+                "catastropheBonus": catastropheBonus,
+                "sign": sign
             }
 
             if(selectedPlayer !== undefined) {
@@ -149,8 +175,28 @@ export default function AddPlayerWindow({
         setSelectedPlayerName(e.target.value);
     }
 
+    function signOnClick(sign: any) {
+        setSign(sign);
+        setShowSignsList(false);
+    }
+
     return (
         <Popup className="add-player-popup-container">
+            {
+                showSignsList &&
+                <div ref={signListRef} className='list-container window'>
+                    {
+                        signsList.map((sign, index) => 
+                            <ListItem
+                                 key={index + sign.id}
+                                className='attachment-item'
+                                text={sign.name}
+                                onClick={() => signOnClick(sign)}
+                            />
+                        )
+                    }
+                </div>
+            }
             <h2>{edit ? "Edit " : "Add "}Player</h2>
             {
                 useQr ?
@@ -189,9 +235,13 @@ export default function AddPlayerWindow({
                             {catastropheBonus}
                             <button onClick={() => setCatastropheBonus(Math.min(catastropheBonus + 1, 10))}>+</button>
                         </div>
-                        {/* <div className="add-player-popup-gene-container">
-                            Sign Button Here
-                        </div> */}
+                        <div className="add-player-popup-gene-container">
+                            <p>Sign</p>
+                            <button className='catastrophe' onClick={() => setShowSignsList(true)}>
+                                {/* {selectedSign === null ? "None" : signName} */}
+                                {sign.name}
+                            </button>
+                        </div>
                         {
                             !edit && <div className="qr-scanner-container">
                                 <div className="qr-scanner-img-container" onClick={() => setUseQr(true)}>

@@ -17,7 +17,34 @@ export function checkScore(players: Player[], discardPile: string[]): number[] {
 
     player.score += getCatastropheValue(players, index) + playerScoreModifier[index];
   });
+  players.forEach((player: Player) => {
+    if(player.sign.bonus) {
+      player.score += getSignBonus(player);
+    }
+  });
   return players.map(player => player.score);
+}
+
+function getSignBonus(player: Player) {
+  const type: String = player.sign.bonusType;
+  
+  switch(type) {
+    case "count":
+      const count = getTraitsWithAttachments(player.traitPile).reduce((acc, cur) => {
+          const trait: Trait | undefined = getTraitData(cur);
+          if(trait) {
+            return acc += checkBonusMatch(player, cur, cur, player.sign.target, player.sign.typeValue, trait);
+          }
+          return 0;
+        }, 0);
+      return player.sign.bonus.reduce((acc: any, cur: any) => {
+        if(cur.typeCount.includes(count)) {
+          return acc + cur.points;
+        }
+        return acc;
+      }, 0);
+    default: return 0;
+  }
 }
 
 type bonusTypes = "name" | "color" | "type";
@@ -174,7 +201,11 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
       traitPile: [],
       hand: [],
       modifier: [],
-      catastropheBonus: 0
+      catastropheBonus: 0,
+      sign: {
+        "name": "none",
+        "id": "00"
+      }
     };
 
     players.forEach((e, i) => {
@@ -191,7 +222,11 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
       traitPile: [],
       hand: [],
       modifier: [],
-      catastropheBonus: 0
+      catastropheBonus: 0,
+      sign: {
+        "name": "none",
+        "id": "00"
+      }
     };
     
     if(bonus.location && bonus.location !== 'discardPile') {
@@ -302,11 +337,6 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
     }
   }
   return Math.floor(count / bonus.amount) * bonusValue;
-}
-
-// implement
-function getColorCount(): number {
-  return 0;
 }
 
 function getAllColorCount(player: Player, location: string[]): number[] {

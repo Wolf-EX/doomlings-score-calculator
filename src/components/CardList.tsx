@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import type { Player, Trait } from '../data/types';
 import traits from '../data/traits.json' with {type: 'json'};
 import attachments from '../data/attachment.json' with {type: 'json'};
 import CardItem from './CardItem';
 import ListItem from './ListItem';
-import type { Player, Trait } from '../data/types';
 import { findAttachment } from '../util/util';
 import { checkScore } from '../util/score';
 
