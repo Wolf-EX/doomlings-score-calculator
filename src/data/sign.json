@@ -6,14 +6,14 @@
     {
         "name": "THE BILBIES",
         "bonusType": "count",
+        "target": "type",
+        "typeValue": "dominant",
         "bonus": [
             {
-                "typeValue": ["dominant"],
                 "typeCount": [1],
                 "points": 4
             },
             {
-                "typeValue": ["dominant"],
                 "typeCount": [0],
                 "points": 10
             }
@@ -22,15 +22,15 @@
     },
     {
         "name": "THE CABOCHON",
-        "bonusType": "range",
+        "bonusType": "count",
+        "target": "color",
+        "typeValue": "r",
         "bonus": [
             {
-                "typeValue": ["r"],
                 "typeCount": [1, 2],
                 "points": 3
             },
             {
-                "typeValue": ["r"],
                 "typeCount": [0],
                 "points": 6
             }

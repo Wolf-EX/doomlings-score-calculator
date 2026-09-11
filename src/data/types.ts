@@ -40,6 +40,7 @@ export type Player = {
   hand: string[];
   modifier: ModifierType[];
   catastropheBonus: number;
+  sign: any;
 }
 
 //add Color type 'change'? for "Free WILL" and "RAINBOW HORN". If has that type, check the characters after first 2 of code
