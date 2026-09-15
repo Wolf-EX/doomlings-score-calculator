@@ -42,7 +42,7 @@ export default function AddPlayerWindow({
 
     const signListRef: React.RefObject<HTMLDivElement | null> = useRef(null);
 
-     useEffect(() => {
+    useEffect(() => {
         function onOuterClick(event: MouseEvent) {
             if(signListRef.current && event.target instanceof Node && !signListRef.current.contains(event.target)) {
                 setShowSignsList(false);
@@ -84,6 +84,7 @@ export default function AddPlayerWindow({
                 "id": 0,
                 "name": selectedPlayerName,
                 "score": 0,
+                "signBonus": 0,
                 "genePool": genePool,
                 "traitPile": [],
                 "hand": [],
@@ -120,6 +121,7 @@ export default function AddPlayerWindow({
                 "id": 0,
                 "name": selectedPlayerName,
                 "score": 0,
+                "signBonus": 0,
                 "genePool": genePool,
                 "traitPile": [],
                 "hand": [],
@@ -184,11 +186,11 @@ export default function AddPlayerWindow({
         <Popup className="add-player-popup-container">
             {
                 showSignsList &&
-                <div ref={signListRef} className='list-container window'>
+                <div ref={signListRef} className='sign-container window'>
                     {
                         signsList.map((sign, index) => 
                             <ListItem
-                                 key={index + sign.id}
+                                key={index + sign.id}
                                 className='attachment-item'
                                 text={sign.name}
                                 onClick={() => signOnClick(sign)}

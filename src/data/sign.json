@@ -1,6 +1,6 @@
 [
     {
-        "name": "none",
+        "name": "None",
         "id": "00"
     },
     {
@@ -36,5 +36,297 @@
             }
         ],
         "id": "02"
+    },
+    {
+        "name": "THE COSMIC JINX",
+        "bonusType": "count",
+        "target": "genePool",
+        "bonus": [
+            {
+                "typeCount": [3],
+                "points": 4
+            },
+            {
+                "typeCount": [1, 2],
+                "points": 8
+            }
+        ],
+        "id": "03"
+    },
+    {
+        "name": "THE COSMIC JINX (3E)",
+        "bonusType": "count",
+        "target": "genePool",
+        "bonus": [
+            {
+                "typeCount": [3],
+                "points": 3
+            },
+            {
+                "typeCount": [1, 2],
+                "points": 7
+            }
+        ],
+        "id": "04"
+    },
+    {
+        "name": "THE DANCER",
+        "bonusType": "size",
+        "target": "score",
+        "bonus": [
+            {
+                "typeCount": "lowest",
+                "points": 12
+            },
+            {
+                "typeCount": "lowestTied",
+                "points": 8
+            }
+        ],
+        "id": "05"
+    },
+    {
+        "name": "THE FELLMONGER",
+        "bonusType": "count",
+        "target": "color",
+        "typeValue": "b",
+        "bonus": [
+            {
+                "typeCount": [1, 2],
+                "points": 3
+            },
+            {
+                "typeCount": [0],
+                "points": 6
+            }
+        ],
+        "id": "06"
+    },
+    {
+        "name": "THE JELLYFISH",
+        "bonusType": "rangeHigher",
+        "target": "color",
+        "typeValue": "b",
+        "bonus": [
+            {
+                "typeCount": [3, 5],
+                "points": 3
+            },
+            {
+                "typeCount": [6],
+                "points": 6
+            }
+        ],
+        "id": "07"
+    },
+    {
+        "name": "THE LOGICIAN",
+        "bonusType": "rangeHigher",
+        "target": "type",
+        "targetMod": "not",
+        "typeValue": "effect",
+        "bonus": [
+            {
+                "typeCount": [3, 5],
+                "points": 3
+            },
+            {
+                "typeCount": [6],
+                "points": 6
+            }
+        ],
+        "id": "08"
+    },
+    {
+        "name": "THE LUMBERJACK",
+        "bonusType": "count",
+        "target": "color",
+        "typeValue": "g",
+        "bonus": [
+            {
+                "typeCount": [1, 2],
+                "points": 3
+            },
+            {
+                "typeCount": [0],
+                "points": 6
+            }
+        ],
+        "id": "09"
+    },
+    {
+        "name": "THE MAGICIAN",
+        "bonusType": "count",
+        "target": "color",
+        "typeValue": "c",
+        "bonus": [
+            {
+                "typeCount": [1, 2],
+                "points": 3
+            },
+            {
+                "typeCount": [0],
+                "points": 6
+            }
+        ],
+        "id": "0a"
+    },
+    {
+        "name": "THE MAVEN",
+        "bonusType": "rangeHigher",
+        "target": "all",
+        "bonus": [
+            {
+                "typeCount": [10, 14],
+                "points": 3
+            },
+            {
+                "typeCount": [15],
+                "points": 7
+            }
+        ],
+        "id": "0b"
+    },
+    {
+        "name": "THE SOOTHSAYER",
+        "bonusType": "count",
+        "target": "color",
+        "typeValue": "p",
+        "bonus": [
+            {
+                "typeCount": [1, 2],
+                "points": 3
+            },
+            {
+                "typeCount": [0],
+                "points": 6
+            }
+        ],
+        "id": "0c"
+    },
+    {
+        "name": "THE SPIRIT GARDENER",
+        "bonusType": "rangeHigher",
+        "target": "color",
+        "typeValue": "c",
+        "bonus": [
+            {
+                "typeCount": [3, 5],
+                "points": 3
+            },
+            {
+                "typeCount": [6],
+                "points": 6
+            }
+        ],
+        "id": "0d"
+    },
+    {
+        "name": "THE TIGRIS",
+        "bonusType": "rangeHigher",
+        "target": "type",
+        "typeValue": "action",
+        "bonus": [
+            {
+                "typeCount": [3, 5],
+                "points": 3
+            },
+            {
+                "typeCount": [6],
+                "points": 6
+            }
+        ],
+        "id": "0e"
+        },
+        {
+            "name": "THE VAGRANT",
+            "bonusType": "size",
+            "target": "traitPile",
+            "bonus": [
+                {
+                    "typeCount": "lowest",
+                    "points": 8
+                },
+                {
+                    "typeCount": "lowestTied",
+                    "points": 6
+                }
+            ],
+            "id": "0f"
+        },
+        {
+            "name": "THE VAGRANT (3E)",
+            "bonusType": "size",
+            "target": "traitPile",
+            "bonus": [
+                {
+                    "typeCount": "lowest",
+                    "points": 7
+                },
+                {
+                    "typeCount": "lowestTied",
+                    "points": 2
+                }
+            ],
+            "id": "0g"
+        },
+    {
+        "name": "THE VIXEN",
+        "bonusType": "rangeHigher",
+        "target": "color",
+        "typeValue": "p",
+        "bonus": [
+            {
+                "typeCount": [3, 5],
+                "points": 3
+            },
+            {
+                "typeCount": [6],
+                "points": 6
+            }
+        ],
+        "id": "0h"
+    },
+    {
+        "name": "THE WARBLER",
+        "bonusType": "rangeHigher",
+        "target": "color",
+        "typeValue": "g",
+        "bonus": [
+            {
+                "typeCount": [3, 5],
+                "points": 3
+            },
+            {
+                "typeCount": [6],
+                "points": 6
+            }
+        ],
+        "id": "0i"
+    },
+    {
+        "name": "THE WARRIOR",
+        "bonusType": "rangeHigher",
+        "target": "color",
+        "typeValue": "r",
+        "bonus": [
+            {
+                "typeCount": [3, 5],
+                "points": 3
+            },
+            {
+                "typeCount": [6],
+                "points": 6
+            }
+        ],
+        "id": "0j"
+    },
+    {
+        "name": "THE WEAVER",
+        "bonusType": "rainbowCount",
+        "bonus": {
+            "points": 3
+        },
+        "id": "0k"
     }
 ]

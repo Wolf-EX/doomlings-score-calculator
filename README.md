@@ -29,7 +29,7 @@ _It might request permission to use the camera._
 
 ## Todo
 - Implement rest of expansions.
-  - Currently only has base game.
+  - Currently only has the deluxe bundle (base game + upgrade pack).
 - Improve landscape view layout.
 
 ## Credit

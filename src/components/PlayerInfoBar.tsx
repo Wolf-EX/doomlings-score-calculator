@@ -84,7 +84,7 @@ export default function PlayerInfoBar({
         {
             player && <div className="player-info-bar">
                 <div className="player-info-bar-name">{player.name.toUpperCase()}</div>
-                <div className="player-info-bar-score">Score: {player.score}</div>
+                <div className="player-info-bar-score">Score: {player.score + player.signBonus}</div>
                 <div className="player-info-button-container">
                     <div className="qrcode-container" onClick={onQRClick}>
                         <img className="qr-logo" src={qrlogo} />

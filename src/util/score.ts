@@ -3,12 +3,14 @@ import { findAttachment, getLocationSize, getTraitsWithAttachments, getTraitData
 
 let _discardPile: string[] = [];
 let _catastrophe: Catastrophe = {name: 'None', bonus: null, id: '00'};
+let _players: Player[] = [];
 
 export function setCatastrophe(catastraphe: Catastrophe) {
   _catastrophe = catastraphe;
 }
 
-export function checkScore(players: Player[], discardPile: string[]): number[] {
+export function checkScore(players: Player[], discardPile: string[]): void {
+  _players = players;
   _discardPile = discardPile;
   const playerScoreModifier: number[] = Array(players.length).fill(0);
   players.forEach((player: Player, index: number) => {
@@ -19,30 +21,82 @@ export function checkScore(players: Player[], discardPile: string[]): number[] {
   });
   players.forEach((player: Player) => {
     if(player.sign.bonus) {
-      player.score += getSignBonus(player);
+      player.signBonus = getSignBonus(player);
     }
   });
-  return players.map(player => player.score);
 }
 
 function getSignBonus(player: Player) {
   const type: String = player.sign.bonusType;
+  const sign = player.sign;
+  let count: number = 0;
   
   switch(type) {
     case "count":
-      const count = getTraitsWithAttachments(player.traitPile).reduce((acc, cur) => {
+      if(sign.target === "genePool") {
+        count = player.genePool as number;
+      } else {
+        count = getTraitsWithAttachments(player.traitPile).reduce((acc, cur) => {
           const trait: Trait | undefined = getTraitData(cur);
           if(trait) {
-            return acc += checkBonusMatch(player, cur, cur, player.sign.target, player.sign.typeValue, trait);
+            return acc += checkBonusMatch(player, cur, cur, player.sign.target, sign.typeValue, trait);
           }
           return 0;
         }, 0);
-      return player.sign.bonus.reduce((acc: any, cur: any) => {
+      }
+      return sign.bonus.reduce((acc: any, cur: any): number => {
         if(cur.typeCount.includes(count)) {
           return acc + cur.points;
         }
         return acc;
       }, 0);
+    case "size":
+      let playerCount: number;
+      let target;
+      if(sign.target === "score") {
+        target = _players.filter(e => e.id != player.id).map(e => e.score);
+        playerCount = player.score;
+      } else if(sign.target === "traitPile") {
+        let loc: "traitPile" | "hand" = sign.target;
+        target = _players.filter(e => e.id != player.id).map((e: Player) => getLocationSize(e[loc]));
+        playerCount = getLocationSize(player[loc]);
+      }
+      if(target) {
+        return sign.bonus.reduce((acc: any, cur: any): number => {
+          if(cur.typeCount === "lowest") {
+            return target.every((targetCount: number) => playerCount < targetCount) ? cur.points : acc;
+          } else if (cur.typeCount === "lowestTied") {
+            return playerCount === Math.min(...target) ? cur.points : acc;
+          }
+          return acc;
+        }, 0);
+      }
+      return 0;
+    case "rangeHigher":
+      if(sign.target === "genePool") {
+        count = player.genePool as number;
+      } else {
+        const allTraits: string[] = getTraitsWithAttachments(player.traitPile)
+        count = allTraits.reduce((acc, cur) => {
+          const trait: Trait | undefined = getTraitData(cur);
+          if(trait) {
+            return acc += checkBonusMatch(player, cur, cur, player.sign.target, sign.typeValue, trait);
+          }
+          return 0;
+        }, 0);
+        if(sign.targetMod === "not") {
+          count = allTraits.length - count;
+        }
+      }
+      return sign.bonus.reduce((acc: any, cur: any): number => {
+        if(cur.typeCount.length === 1) {
+          return count >= cur.typeCount ? cur.points : acc;
+        } else {
+          return count >= Math.min(...cur.typeCount) && count <= Math.max(...cur.typeCount) ? cur.points : acc;
+        }
+      }, 0);
+    case "rainbowCount":
+      return Math.min(...getAllColorCount(player, getTraitsWithAttachments(player.traitPile))) * sign.bonus.points;
     default: return 0;
   }
 }
@@ -197,6 +251,7 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
       id: index,
       name: "opponents",
       score: 0,
+      signBonus: 0,
       genePool: 0,
       traitPile: [],
       hand: [],
@@ -219,6 +274,7 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
       name: "opponents",
       genePool: [],
       score: 0,
+      signBonus: 0,
       traitPile: [],
       hand: [],
       modifier: [],
