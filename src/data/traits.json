@@ -78,7 +78,7 @@
     {
         "name": "COLD BLOOD",
         "color": ["b"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -87,7 +87,7 @@
     {
         "name": "COSTLY SIGNALING",
         "color": ["b"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": -2,
         "bonus": null,
         "effect": null,
@@ -112,7 +112,7 @@
     {
         "name": "FLIGHT",
         "color": ["b"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -130,7 +130,7 @@
     {
         "name": "IRIDESCENT SCALES",
         "color": ["b"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -148,7 +148,7 @@
     {
         "name": "PAINTED SHELL",
         "color": ["b"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -175,7 +175,7 @@
     {
         "name": "SCUTES",
         "color": ["b"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 3,
         "bonus": null,
         "effect": null,
@@ -184,7 +184,7 @@
     {
         "name": "SELECTIVE MEMORY",
         "color": ["b"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -202,7 +202,7 @@
     {
         "name": "SWEAT",
         "color": ["b"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -211,7 +211,7 @@
     {
         "name": "TENTACLES",
         "color": ["b"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -367,7 +367,7 @@
     {
         "name": "PHOTOSYNTHESIS",
         "color": ["g"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -392,7 +392,7 @@
     {
         "name": "PROPAGATION",
         "color": ["g"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -416,7 +416,7 @@
     {
         "name": "SELF-REPLICATING",
         "color": ["g"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -441,7 +441,7 @@
     {
         "name": "TINY LITTLE MELONS",
         "color": ["g"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -450,7 +450,7 @@
     {
         "name": "TRUNK",
         "color": ["g"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -556,7 +556,7 @@
     {
         "name": "DOTING",
         "color": ["c"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -607,7 +607,7 @@
     {
         "name": "INTROSPECTIVE",
         "color": ["c"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -701,7 +701,7 @@
     {
         "name": "THE THIRD EYE",
         "color": ["c"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -770,7 +770,7 @@
     {
         "name": "CLEVER",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -779,7 +779,7 @@
     {
         "name": "DIRECTLY REGISTER",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -806,7 +806,7 @@
     {
         "name": "IMPATIENCE",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -815,7 +815,7 @@
     {
         "name": "INVENTIVE",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -824,7 +824,7 @@
     {
         "name": "MEMORY",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -842,7 +842,7 @@
     {
         "name": "NOSY",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -860,7 +860,7 @@
     {
         "name": "PERSUASIVE",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -869,7 +869,7 @@
     {
         "name": "POISONOUS",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -878,7 +878,7 @@
     {
         "name": "SELFISH",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -930,7 +930,7 @@
     {
         "name": "TELEKINETIC",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -939,7 +939,7 @@
     {
         "name": "VENOMOUS",
         "color": ["p"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": -2,
         "bonus": null,
         "effect": null,
@@ -1001,7 +1001,7 @@
     {
         "name": "BAD",
         "color": ["r"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -1087,7 +1087,7 @@
     {
         "name": "HOT TEMPER",
         "color": ["r"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -1121,7 +1121,7 @@
     {
         "name": "RECKLESS",
         "color": ["r"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 3,
         "bonus": null,
         "effect": null,
@@ -1148,7 +1148,7 @@
     {
         "name": "TERRITORIAL",
         "color": ["r"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -1157,7 +1157,7 @@
     {
         "name": "VORACIOUS",
         "color": ["r"],
-        "type": ["effect"],
+        "type": ["effect", "action"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -1190,7 +1190,7 @@
     {
         "name": "NEURAL LINK",
         "color": ["b"],
-        "type": ["effect", "techling"],
+        "type": ["effect", "action", "techling"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -1199,7 +1199,7 @@
     {
         "name": "BINARY",
         "color": ["g"],
-        "type": ["effect", "techling"],
+        "type": ["effect", "action", "techling"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -1208,7 +1208,7 @@
     {
         "name": "GREY HAT",
         "color": ["g"],
-        "type": ["effect", "techling"],
+        "type": ["effect", "action", "techling"],
         "faceValue": -1,
         "bonus": null,
         "effect": null,
@@ -1248,7 +1248,7 @@
     {
         "name": "PHREAKISH EYES",
         "color": ["r"],
-        "type": ["effect", "techling"],
+        "type": ["effect", "action", "techling"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -1357,16 +1357,16 @@
     {
         "name": "ELONGATED NECK",
         "color": ["b"],
-        "type": ["effect", "dinoling"],
+        "type": ["effect", "dinoling", "action"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
         "code": "26"
     },
     {
-        "name": "PTEROSAUR",
+        "name": "PTEROSAUR WINGS",
         "color": ["b"],
-        "type": ["effect", "dinoling"],
+        "type": ["effect", "action", "dinoling"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -1384,7 +1384,7 @@
     {
         "name": "BONY PLATES",
         "color": ["g"],
-        "type": ["effect", "dinoling"],
+        "type": ["effect", "action", "dinoling"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -1411,7 +1411,7 @@
     {
         "name": "THAGOMIZER",
         "color": ["g"],
-        "type": ["effect", "dinoling"],
+        "type": ["effect", "action", "dinoling"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -1435,16 +1435,16 @@
     {
         "name": "DERMAL ARMOR",
         "color": ["c"],
-        "type": ["effect", "dinoling"],
+        "type": ["effect", "action", "dinoling"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
         "code": "2d"
     },
     {
-        "name": "PYCOFIBERS",
+        "name": "PYCNOFIBERS",
         "color": ["c"],
-        "type": ["effect", "dinoling"],
+        "type": ["effect", "action", "dinoling"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -1453,7 +1453,7 @@
     {
         "name": "EGG PREDATION",
         "color": ["p"],
-        "type": ["effect", "dinoling"],
+        "type": ["effect", "action", "dinoling"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -1462,7 +1462,7 @@
     {
         "name": "PROTOFEATHERS",
         "color": ["p"],
-        "type": ["effect", "dinoling"],
+        "type": ["effect", "action", "dinoling"],
         "faceValue": -2,
         "bonus": null,
         "effect": null,
@@ -1694,7 +1694,7 @@
     {
         "name": "ANCIENT",
         "color": ["r"],
-        "type": ["effect", "mythling"],
+        "type": ["effect", "action", "mythling"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -1736,7 +1736,7 @@
     {
         "name": "MIGHTY",
         "color": ["r"],
-        "type": ["effect", "mythling"],
+        "type": ["effect", "action", "mythling"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,

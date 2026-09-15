@@ -376,3 +376,10 @@
 .qr-scanner-button {
     margin-top: 2vh;
 }
+
+.sign-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(0, -25%);
+}

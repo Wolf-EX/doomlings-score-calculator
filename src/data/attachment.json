@@ -69,7 +69,7 @@
     {
         "name": "TRANSGENIC MODIFICATION",
         "color": ["g"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": {
@@ -81,7 +81,7 @@
     {
         "name": "RUGGEDIZED",
         "color": ["c"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 4,
         "bonus": null,
         "effect": null,
@@ -90,7 +90,7 @@
     {
         "name": "GMO",
         "color": ["c"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": -1,
         "bonus": {
             "type": "color",
@@ -106,7 +106,7 @@
     {
         "name": "ELECTROMAGNETIC",
         "color": ["p"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -115,7 +115,7 @@
     {
         "name": "SUBDERMAL PLATING",
         "color": ["p"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": -1,
         "bonus": null,
         "effect": null,
@@ -124,7 +124,7 @@
     {
         "name": "BONE REINFORCEMENT",
         "color": ["r"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -133,7 +133,7 @@
     {
         "name": "ENCHANTED",
         "color": ["b"],
-        "type": ["mythlings", "attachment"],
+        "type": ["effect", "mythlings", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -142,7 +142,7 @@
     {
         "name": "CURSED",
         "color": ["c"],
-        "type": ["mythlings", "attachment"],
+        "type": ["effect", "mythlings", "attachment"],
         "faceValue": -2,
         "bonus": null,
         "effect": null,
@@ -190,7 +190,7 @@
     {
         "name": "SPEECH RECOGNITION",
         "color": ["b"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -211,7 +211,7 @@
     {
         "name": "TERRARIUM",
         "color": ["g"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -220,7 +220,7 @@
     {
         "name": "FILAMENT",
         "color": ["g"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -229,7 +229,7 @@
     {
         "name": "SPRINGY",
         "color": ["p"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 0,
         "bonus": null,
         "effect": null,
@@ -238,7 +238,7 @@
     {
         "name": "TRANSISTOR",
         "color": ["p"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 2,
         "bonus": null,
         "effect": null,
@@ -247,7 +247,7 @@
     {
         "name": "CORRODED",
         "color": ["r"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": -1,
         "bonus": null,
         "effect": null,
@@ -256,7 +256,7 @@
     {
         "name": "REFURBISHED",
         "color": ["r"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,
@@ -265,7 +265,7 @@
     {
         "name": "TREADS",
         "color": ["r"],
-        "type": ["techling", "attachment"],
+        "type": ["effect", "techling", "attachment"],
         "faceValue": 1,
         "bonus": null,
         "effect": null,

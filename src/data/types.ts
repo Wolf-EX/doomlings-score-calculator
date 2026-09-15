@@ -35,6 +35,7 @@ export type Player = {
   id: number;
   name: string;
   score: number;
+  signBonus: number;
   genePool: number | number[];
   traitPile: string[];
   hand: string[];

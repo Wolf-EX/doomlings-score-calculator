@@ -55,7 +55,7 @@ export default function PlayerTab({
                     >
                         <div className="player-item">
                             <div>{player.name} </div>
-                            ({player.score})
+                            ({player.score + player.signBonus})
                         </div>
                     </div>
                 ))
