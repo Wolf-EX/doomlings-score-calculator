@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Player } from "../data/types";
+import type { Player, Sign } from "../data/types";
 import DeleteButton from "./DeleteButton";
 import Popup from "./Popup";
 import QRCode from "react-qr-code";
@@ -16,6 +16,9 @@ type Props = {
     setSelectedPlayerName: React.Dispatch<React.SetStateAction<string>>;
     discardPile: string[];
     uId: {current: number};
+    sign: Sign;
+    setSign: React.Dispatch<React.SetStateAction<Sign>>;
+    setShowSignList: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function PlayerInfoBar({
@@ -26,11 +29,14 @@ export default function PlayerInfoBar({
     selectedPlayerName,
     setSelectedPlayerName,
     discardPile,
-    uId
+    uId,
+    sign,
+    setSign,
+    setShowSignList
 }: Props) {
-    const [showDeleteWarning, setShowDeleteWarning] = useState<Boolean>(false);
+    const [showDeleteWarning, setShowDeleteWarning] = useState<boolean>(false);
     const [showQRCode, setShowQRCode] = useState<boolean>(false);
-    const [showAddPlayer, setShowAddPlayer] = useState<Boolean>(false);
+    const [showAddPlayer, setShowAddPlayer] = useState<boolean>(false);
 
     const player = players[selectedPlayer];
     const playerString = JSON.stringify(player);
@@ -74,6 +80,9 @@ export default function PlayerInfoBar({
                 setShowAddPlayer={setShowAddPlayer}
                 edit={true}
                 uId={uId}
+                sign={sign}
+                setSign={setSign}
+                setShowSignList={setShowSignList}
             />
         }
         {

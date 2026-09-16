@@ -16,12 +16,12 @@ type Props = {
     selectedPile: number;
     discardPile: string[];
     traitList: string[];
-    removeFn: Function;
+    removeFn: (list: string[] | null, index: number) => void;
 };
 
 export default function CardList({traitList, selectedPile, players, setPlayers, selectedPlayer, discardPile, removeFn}: Props) {
     const [targetTrait, setTargetTrait] = useState<{index: number, code: string}>({index: 0, code: ""}); // Item targeted for techlings attachment
-    const [showAttachmentList, setShowAttachmentList] = useState<Boolean>(false);
+    const [showAttachmentList, setShowAttachmentList] = useState<boolean>(false);
 
     const attachmentListRef: React.RefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
 

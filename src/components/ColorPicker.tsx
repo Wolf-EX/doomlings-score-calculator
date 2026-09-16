@@ -4,7 +4,7 @@ type Props = {
     title: string;
     double: boolean;
     doubleTitle?: string;
-    onSelect: Function
+    onSelect: (index: number, colorCode: number) => void;
     onAdd?: () => void;
     onCancel: () => void;
     show?: boolean;

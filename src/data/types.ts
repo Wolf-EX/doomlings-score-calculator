@@ -18,6 +18,17 @@ export type Catastrophe = {
   id: string;
 }
 
+// update this
+export type Sign = {
+  name: string;
+  bonusType?: string;
+  target?: string;
+  targetMod?: string;
+  typeValue?: TypeValue;
+  bonus?: any;
+  id: string;
+}
+
 export type Bonus = {
   type: string;
   typeValue?: TypeValue;
@@ -26,10 +37,6 @@ export type Bonus = {
   amount: number;
   value: number;
 }
-
-export type Location = 'traitPile' | 'hand' | 'discardPile' | 'genePool';
-
-export type TypeValue = number | Color[] | Color | 'c' | 'positive' | 'negative' | 'choice' | 'host' | undefined; // string is temp
 
 export type Player = {
   id: number;
@@ -44,7 +51,10 @@ export type Player = {
   sign: any;
 }
 
-//add Color type 'change'? for "Free WILL" and "RAINBOW HORN". If has that type, check the characters after first 2 of code
+export type Location = 'traitPile' | 'hand' | 'discardPile' | 'genePool';
+
+export type TypeValue = number | string | Color[] | Color | 'c' | 'positive' | 'negative' | 'choice' | 'host' | undefined; // string is temp
+
 export type Color = 'r' | 'b' | 'g' | 'p';
 
 // update this, object should be specific

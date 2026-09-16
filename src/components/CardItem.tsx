@@ -6,7 +6,7 @@ type Props = {
     traitName: string;
     traitCode: string;
     selectedPile: number;
-    setShowAttachmentList: React.Dispatch<React.SetStateAction<Boolean>>;
+    setShowAttachmentList: React.Dispatch<React.SetStateAction<boolean>>;
     setTargetTrait: React.Dispatch<React.SetStateAction<{index: number,code: string}>>;
     onClick: () => void;
 }

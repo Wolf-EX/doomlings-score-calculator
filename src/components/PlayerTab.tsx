@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Player } from "../data/types";
+import type { Player, Sign } from "../data/types";
 import AddPlayerWindow from "./AddPlayerWindow";
 
 type Props = {
@@ -10,7 +10,10 @@ type Props = {
     selectedPlayerName: string;
     setSelectedPlayerName: React.Dispatch<React.SetStateAction<string>>;
     discardPile: string[];
-    uId: {current: number}
+    uId: {current: number};
+    sign: Sign;
+    setSign: React.Dispatch<React.SetStateAction<Sign>>;
+    setShowSignList: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function PlayerTab({
@@ -21,9 +24,12 @@ export default function PlayerTab({
     selectedPlayerName,
     setSelectedPlayerName,
     discardPile,
-    uId
+    uId,
+    sign,
+    setSign,
+    setShowSignList
 }: Props) {
-    const [showAddPlayer, setShowAddPlayer] = useState<Boolean>(false);
+    const [showAddPlayer, setShowAddPlayer] = useState<boolean>(false);
 
     function onSelectPlayer(index: number) {
         setSelectedPlayer(index);
@@ -42,6 +48,9 @@ export default function PlayerTab({
                     setShowAddPlayer={setShowAddPlayer}
                     edit={false}
                     uId={uId}
+                    sign={sign}
+                    setSign={setSign}
+                    setShowSignList={setShowSignList}
                 />
             }
             <h2>Players</h2>

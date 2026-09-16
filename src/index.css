@@ -179,7 +179,7 @@ input:focus {
 }
 
 .scrollable {
-  max-height: var(--scroll-window-height);
+  /* max-height: var(--scroll-window-height); */
   overflow-y: auto;
   scrollbar-color: var(--accent-border) rgba(255, 255, 255, 0);
 }
