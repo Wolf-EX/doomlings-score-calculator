@@ -1,4 +1,4 @@
-import type { Player, Trait, Bonus, Color, Catastrophe, ModifierType, TypeValue } from "../data/types";
+import type { Player, Trait, Bonus, Color, Catastrophe, ModifierType, TypeValue, Sign } from "../data/types";
 import { findAttachment, getLocationSize, getTraitsWithAttachments, getTraitData, getAttachment, findTrait, isString } from "./util";
 
 let _discardPile: string[] = [];
@@ -28,7 +28,7 @@ export function checkScore(players: Player[], discardPile: string[]): void {
 
 function getSignBonus(player: Player) {
   const type: String = player.sign.bonusType;
-  const sign = player.sign;
+  const sign: Sign = player.sign;
   let count: number = 0;
   
   switch(type) {

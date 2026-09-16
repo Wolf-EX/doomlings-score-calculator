@@ -1,14 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
-import { type Player, type Catastrophe, type ModifierType } from './data/types';
+import { type Player, type Catastrophe, type ModifierType, type Sign } from './data/types';
+import { findCatastrophe, findTrait } from './util/util';
+import { checkScore } from './util/score';
+import signs from "./data/sign.json" with {type: 'json'};
 import PlayerTab from './components/PlayerTab';
 import CardList from './components/CardList';
 import CardInput from './components/CardInput';
-import { findCatastrophe, findTrait } from './util/util';
-import { checkScore } from './util/score';
 import PlayerInfoBar from './components/PlayerInfoBar';
 import PileTab from './components/PileTab';
 import CatastropheButton from './components/CatastropheButton';
+import SignList from './components/SignList';
+
+const signData: Sign[] = signs;
 
 export default function App() {
   const [players, setPlayers] = useState<Player[] | []>([]);
@@ -18,6 +22,8 @@ export default function App() {
   const [selectedCatastrophe, setSelectedCatastrophe] = useState<Catastrophe>(() => findCatastrophe("00"));
   const [traitList, setTraitList] = useState<string[]>([]);
   const [discardPile, setDiscardPile] = useState<string[]>([]);
+  const [showSignList, setShowSignList] = useState<boolean>(false);
+  const [sign, setSign] = useState<Sign>(signData[0]);
 
   const uid = useRef(0);
 
@@ -34,7 +40,7 @@ export default function App() {
 
   useEffect(() => {
       resizeTraitList();
-  }, [players.length]);
+  }, [players.length, showSignList]);
 
   useEffect(() => {
     // move this to function that selects catastrophe instead(updates after page redraws)
@@ -46,12 +52,18 @@ export default function App() {
   useEffect(() => {
     setTraitList(() => players.length > 0 ? getTraitPile() : []);
   }, [players, selectedPlayer, selectedPile, discardPile]);
+  
 
   function resizeTraitList(): void {
     const scrollWindow: HTMLElement | null = document.getElementById("scrollWindow");
     if(scrollWindow) {
       const rect = scrollWindow.getBoundingClientRect();
       scrollWindow.style.height = `${(window.innerHeight - rect.y - 8).toString()}px`;
+    }
+
+    const signListWindow: HTMLElement | null = document.getElementById("signListWindow");
+    if(signListWindow) {
+      signListWindow.style.maxHeight = `${(window.innerHeight - 64).toString()}px`;
     }
   }
 
@@ -67,7 +79,7 @@ export default function App() {
     }
   }
 
-  function removeTrait(list: string[] | null, index: number) {
+  function removeTrait(list: string[] | null, index: number): void {
     if(list) {
       const removingTraitId: string = list.splice(index, 1)[0];
       const removingTrait = findTrait(removingTraitId.slice(0, 2));
@@ -78,7 +90,7 @@ export default function App() {
               const toColor = removingTraitId.slice(3, 4);
               const index: number = players[selectedPlayer].modifier.findIndex((e: ModifierType) => {
                 return (typeof e === "object" && e.type === "color" && e.from === fromColor && e.to == toColor);
-              })
+              });
               players[selectedPlayer].modifier.splice(index, 1);
           }
       }
@@ -90,6 +102,12 @@ export default function App() {
 
   return (
     <div className='app-container'>
+      <SignList
+        signData={signData}
+        setSign={setSign}
+        showSignList={showSignList}
+        setShowSignList={setShowSignList}
+      />
       <header>
         <p className='title'>Doomlings Score Calculator</p>
       </header>
@@ -109,6 +127,9 @@ export default function App() {
           setSelectedPlayerName={setSelectedPlayerName}
           discardPile={discardPile}
           uId={uid}
+          sign={sign}
+          setSign={setSign}
+          setShowSignList={setShowSignList}
         />
         <PlayerInfoBar
           players={players}
@@ -119,6 +140,9 @@ export default function App() {
           setSelectedPlayerName={setSelectedPlayerName}
           discardPile={discardPile}
           uId={uid}
+          sign={sign}
+          setSign={setSign}
+          setShowSignList={setShowSignList}
         />
         <CardInput
           players={players}
