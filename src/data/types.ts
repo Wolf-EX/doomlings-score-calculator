@@ -3,12 +3,12 @@ export type Trait = {
   color: string[];
   type: string[];
   faceValue: number;
-  bonus: Bonus | null;
-  effect: {
+  bonus?: Bonus | null;
+  effect?: {
     popup?: "none" | "single" | "double";
     type: string;
     value?: Color;
-  } | null; // string is temp till I implement bonus effects (like color change)
+  }; // string is temp till I implement bonus effects (like color change)
   code: string; // change to id
 }
 
@@ -23,8 +23,8 @@ export type Sign = {
   name: string;
   bonusType?: string;
   target?: string;
-  targetMod?: string;
   typeValue?: TypeValue;
+  targetMod?: string;
   bonus?: any;
   id: string;
 }
@@ -32,6 +32,7 @@ export type Sign = {
 export type Bonus = {
   type: string;
   typeValue?: TypeValue;
+  valueMod?: "not";
   location: Location;
   target?: 'all' | 'self' | 'opponent' | 'player' | 'host';
   amount: number;
