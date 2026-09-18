@@ -24,7 +24,6 @@ export type Sign = {
   bonusType?: string;
   target?: string;
   typeValue?: TypeValue;
-  targetMod?: string;
   bonus?: any;
   id: string;
 }

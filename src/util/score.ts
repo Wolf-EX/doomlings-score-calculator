@@ -84,9 +84,6 @@ function getSignBonus(player: Player) {
           }
           return 0;
         }, 0);
-        if(sign.targetMod === "not") {
-          count = allTraits.length - count;
-        }
       }
       return sign.bonus.reduce((acc: any, cur: any): number => {
         if(cur.typeCount.length === 1) {
@@ -346,10 +343,12 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
             highestIndex = -1;
           }
         });
-        if(["r", "b", "g", "p"][highestIndex] === bonus.typeValue) {
-          return bonus.value;
+        if(bonus.typeValue) {
+          if(["r", "b", "g", "p"][highestIndex] === bonus.typeValue) {
+            return bonus.value;
+          }
         }
-        return 0;
+        return highestValue;
       case "most": case "apex":
         let hasMost: boolean = false;
         if(bonus.location === "traitPile") {
