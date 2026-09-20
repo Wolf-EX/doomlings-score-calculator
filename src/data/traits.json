@@ -4,8 +4,6 @@
         "color": ["b"],
         "type": ["dominant", "effect"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "00"
     },
     {
@@ -21,7 +19,6 @@
             "amount": 1,
             "value": 2
         },
-        "effect": null,
         "code": "01"
     },
     {
@@ -36,16 +33,28 @@
             "amount": 1,
             "value": -1
         },
-        "effect": null,
         "code": "02"
+    },
+     {
+        "name": "TINY (3E)",
+        "color": ["b"],
+        "type": ["dominant", "effect", "dropOfLife"],
+        "faceValue": 17,
+        "bonus": {
+            "type": "typeMissing",
+            "typeValue": "dominant",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": -1
+        },
+        "code": "2J"
     },
     {
         "name": "AUTOMIMICRY (2E)",
         "color": ["b"],
         "type": ["effect"],
         "faceValue": -1,
-        "bonus": null,
-        "effect": null,
         "code": "03"
     },
     {
@@ -53,8 +62,6 @@
         "color": ["b"],
         "type": ["effect"],
         "faceValue": 0,
-        "bonus": null,
-        "effect": null,
         "code": "04"
     },
     {
@@ -62,8 +69,6 @@
         "color": ["b"],
         "type": [],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "05"
     },
     {
@@ -71,8 +76,6 @@
         "color": ["b"],
         "type": ["effect"],
         "faceValue": 0,
-        "bonus": null,
-        "effect": null,
         "code": "06"
     },
     {
@@ -80,8 +83,6 @@
         "color": ["b"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "07"
     },
     {
@@ -89,8 +90,6 @@
         "color": ["b"],
         "type": ["effect", "action"],
         "faceValue": -2,
-        "bonus": null,
-        "effect": null,
         "code": "08"
     },
     {
@@ -106,7 +105,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "09"
     },
     {
@@ -114,8 +112,6 @@
         "color": ["b"],
         "type": ["effect", "action"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "0a"
     },
     {
@@ -123,8 +119,6 @@
         "color": ["b"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0b"
     },
     {
@@ -132,8 +126,6 @@
         "color": ["b"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0c"
     },
     {
@@ -141,8 +133,6 @@
         "color": ["b"],
         "type": [],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "0d"
     },
     {
@@ -150,8 +140,6 @@
         "color": ["b"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0e"
     },
     {
@@ -159,8 +147,6 @@
         "color": ["b"],
         "type": ["effect"],
         "faceValue": 0,
-        "bonus": null,
-        "effect": null,
         "code": "0f"
     },
     {
@@ -168,8 +154,6 @@
         "color": ["b"],
         "type": ["effect"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0g"
     },
     {
@@ -177,8 +161,6 @@
         "color": ["b"],
         "type": ["effect", "action"],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "0h"
     },
     {
@@ -186,8 +168,6 @@
         "color": ["b"],
         "type": ["effect", "action"],
         "faceValue": 0,
-        "bonus": null,
-        "effect": null,
         "code": "0i"
     },
     {
@@ -195,8 +175,6 @@
         "color": ["b"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0j"
     },
     {
@@ -204,8 +182,6 @@
         "color": ["b"],
         "type": ["effect", "action"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "0k"
     },
     {
@@ -213,8 +189,6 @@
         "color": ["b"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0l"
     },
     {
@@ -222,8 +196,6 @@
         "color": ["g"],
         "type": ["dominant", "effect"],
         "faceValue": 7,
-        "bonus": null,
-        "effect": null,
         "code": "0m"
     },
     {
@@ -238,7 +210,6 @@
             "amount": 2,
             "value": 1
         },
-        "effect": null,
         "code": "0n"
     },
     {
@@ -253,16 +224,27 @@
             "amount": 1,
             "value": 2
         },
-        "effect": null,
         "code": "0o"
+    },
+    {
+        "name": "SYMBIOSIS (3E)",
+        "color": ["g"],
+        "type": ["dominant", "effect", "dropOfLife"],
+        "faceValue": 2,
+        "bonus": {
+            "type": "lowestColor",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": 2
+        },
+        "code": "2L"
     },
     {
         "name": "APPEALING",
         "color": ["g"],
         "type": [],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "0p"
     },
     {
@@ -270,8 +252,6 @@
         "color": ["g"],
         "type": [],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "0q"
     },
     {
@@ -287,41 +267,51 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "0r"
+    },
+    {
+        "name": "BRANCHES (3E)",
+        "color": ["g"],
+        "type": ["effect", "dropOfLife"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "mostColor",
+            "typeValue": "g",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": 4
+        },
+        "code": "2M"
     },
     {
         "name": "DEEP ROOTS",
         "color": ["g"],
         "type": [],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "0s"
+    },
+    {
+        "name": "DEEP ROOTS (3E)",
+        "color": ["g"],
+        "type": ["effect", "dropOfLife"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "color",
+            "typeValue": "g",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 3,
+            "value": 3
+        },
+        "code": "2n"
     },
     {
         "name": "FECUNDITY",
         "color": ["g"],
         "type": ["effect"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0t"
-    },
-    {
-        "name": "FORTUNATE (2E)",
-        "color": ["g"],
-        "type": ["effect", "dropOfLife"],
-        "faceValue": null,
-        "bonus": {
-            "type": "all",
-            "location": "hand",
-            "target": "self",
-            "amount": 1,
-            "value": 1
-        },
-        "effect": null,
-        "code": "0u"
     },
     {
         "name": "FORTUNATE (1E)",
@@ -336,17 +326,49 @@
             "amount": 1,
             "value": 2
         },
-        "effect": null,
         "code": "0v"
+    },
+    {
+        "name": "FORTUNATE (2E)",
+        "color": ["g"],
+        "type": ["effect", "dropOfLife"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "all",
+            "location": "hand",
+            "target": "self",
+            "amount": 1,
+            "value": 1
+        },
+        "code": "0u"
+    },
+    {
+        "name": "FORTUNATE (3E)",
+        "color": ["c"],
+        "type": ["effect", "dropOfLife"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "all",
+            "location": "hand",
+            "target": "self",
+            "amount": 1,
+            "value": 1
+        },
+        "code": "1O"
     },
     {
         "name": "LEAVES",
         "color": ["g"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0w"
+    },
+    {
+        "name": "LEAVES (3E)",
+        "color": ["g"],
+        "type": [],
+        "faceValue": 1,
+        "code": "2N"
     },
     {
         "name": "OVERGROWTH",
@@ -361,7 +383,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "0x"
     },
     {
@@ -369,8 +390,6 @@
         "color": ["g"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0y"
     },
     {
@@ -386,7 +405,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "0z"
     },
     {
@@ -394,15 +412,13 @@
         "color": ["g"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0A"
     },
     {
         "name": "RANDOM FERTILIZATION",
         "color": ["g"],
         "type": ["effect", "dropOfLife"],
-        "faceValue": null,
+        "faceValue": 0,
         "bonus": {
             "type": "size",
             "location": "genePool",
@@ -410,7 +426,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "0B"
     },
     {
@@ -418,15 +433,13 @@
         "color": ["g"],
         "type": ["effect", "action"],
         "faceValue": 0,
-        "bonus": null,
-        "effect": null,
         "code": "0C"
     },
     {
         "name": "SWARM",
         "color": ["g"],
         "type": ["effect", "SWARM"],
-        "faceValue": null,
+        "faceValue": 0,
         "bonus": {
             "type": "type",
             "typeValue": "SWARM",
@@ -435,7 +448,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "0D"
     },
     {
@@ -443,8 +455,6 @@
         "color": ["g"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0E"
     },
     {
@@ -452,17 +462,13 @@
         "color": ["g"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0F"
     },
     {
         "name": "WOODY STEMS",
         "color": ["g"],
-        "type": ["effect"],
+        "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0G"
     },
     {
@@ -470,8 +476,6 @@
         "color": ["c"],
         "type": ["dominant", "effect"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "0H"
     },
     {
@@ -479,7 +483,6 @@
         "color": ["c"],
         "type": ["dominant", "effect", "worldsEnd"],
         "faceValue": 4,
-        "bonus": null,
         "effect": {
             "popup": "double",
             "type": "colorChange"
@@ -491,8 +494,6 @@
         "color": ["c"],
         "type": ["dominant", "effect"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "0J"
     },
     {
@@ -507,14 +508,20 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "0K"
+    },
+    {
+        "name": "BOREDOM (1E)",
+        "color": ["c"],
+        "type": ["effect"],
+        "faceValue": 1,
+        "code": "0M"
     },
     {
         "name": "BOREDOM (2E)",
         "color": ["c"],
         "type": ["effect", "dropOfLife"],
-        "faceValue": null,
+        "faceValue": 0,
         "bonus": {
             "type": "type",
             "typeValue": "effect",
@@ -523,25 +530,28 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "0L"
     },
     {
-        "name": "BOREDOM (1E)",
+        "name": "BOREDOM (3E)",
         "color": ["c"],
-        "type": ["effect"],
-        "faceValue": 1,
-        "bonus": null,
-        "effect": null,
-        "code": "0M"
+        "type": ["effect", "dropOfLife"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "color",
+            "typeValue": "c",
+            "location": "hand",
+            "target": "self",
+            "amount": 1,
+            "value": 2
+        },
+        "code": "2Q"
     },
     {
         "name": "CONFUSION",
         "color": ["c"],
         "type": [],
         "faceValue": -2,
-        "bonus": null,
-        "effect": null,
         "code": "0N"
     },
     {
@@ -549,8 +559,6 @@
         "color": ["c"],
         "type": ["effect"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "0O"
     },
     {
@@ -558,8 +566,6 @@
         "color": ["c"],
         "type": ["effect", "action"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "0P"
     },
     {
@@ -567,8 +573,6 @@
         "color": ["c"],
         "type": ["effect"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0Q"
     },
     {
@@ -576,8 +580,6 @@
         "color": ["c"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0R"
     },
     {
@@ -585,15 +587,13 @@
         "color": ["c"],
         "type": [],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "0S"
     },
     {
         "name": "GRATITUDE",
         "color": ["c"],
         "type": ["effect", "dropOfLife"],
-        "faceValue": null,
+        "faceValue": 0,
         "bonus": {
             "type": "diffColors",
             "location": "traitPile",
@@ -601,7 +601,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "0T"
     },
     {
@@ -609,8 +608,6 @@
         "color": ["c"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0U"
     },
     {
@@ -618,8 +615,6 @@
         "color": ["c"],
         "type": ["effect"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "0V"
     },
     {
@@ -627,8 +622,6 @@
         "color": ["c"],
         "type": ["effect"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0W"
     },
     {
@@ -644,7 +637,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "0X"
     },
     {
@@ -652,8 +644,6 @@
         "color": ["c"],
         "type": ["effect"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "0Y"
     },
     {
@@ -661,17 +651,20 @@
         "color": ["c"],
         "type": ["effect"],
         "faceValue": 5,
-        "bonus": null,
-        "effect": null,
         "code": "0Z"
+    },
+    {
+        "name": "MORALITY (3E)",
+        "color": ["c"],
+        "type": ["effect"],
+        "faceValue": 6,
+        "code": "2S"
     },
     {
         "name": "PREPPER",
         "color": ["c"],
         "type": ["effect"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "10"
     },
     {
@@ -686,7 +679,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "11"
     },
     {
@@ -694,8 +686,6 @@
         "color": ["c"],
         "type": ["effect"],
         "faceValue": -1,
-        "bonus": null,
-        "effect": null,
         "code": "12"
     },
     {
@@ -703,8 +693,6 @@
         "color": ["c"],
         "type": ["effect", "action"],
         "faceValue": 0,
-        "bonus": null,
-        "effect": null,
         "code": "13"
     },
     {
@@ -719,16 +707,13 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "14"
     },
     {
         "name": "VAMPIRISM",
         "color": ["p"],
-        "type": ["dominant", "effect"],
+        "type": ["dominant", "effect", "VAMPIRISM"],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "15"
     },
     {
@@ -750,12 +735,27 @@
         "code": "16"
     },
     {
+        "name": "VIRAL (3E)",
+        "color": ["p"],
+        "type": ["dominant", "effect", "dropOfLife"],
+        "faceValue": 2,
+        "bonus": {
+            "type": "colorAttack",
+            "typeValue": "most",
+            "location": "traitPile",
+            "amount": 1,
+            "value": -1
+        },
+        "effect": {
+            "type": "modify"
+        },
+        "code": "2T"
+    },
+    {
         "name": "ADORABLE",
         "color": ["p"],
         "type": [],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "17"
     },
     {
@@ -763,17 +763,20 @@
         "color": ["p"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "18"
+    },
+    {
+        "name": "BIG EARS (3E)",
+        "color": ["b", "p"],
+        "type": [],
+        "faceValue": 1,
+        "code": "2U"
     },
     {
         "name": "CLEVER",
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "19"
     },
     {
@@ -781,8 +784,6 @@
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1a"
     },
     {
@@ -790,8 +791,6 @@
         "color": ["p"],
         "type": ["effect"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1b"
     },
     {
@@ -799,8 +798,6 @@
         "color": ["p"],
         "type": [],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1c"
     },
     {
@@ -808,8 +805,6 @@
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1d"
     },
     {
@@ -817,8 +812,6 @@
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1e"
     },
     {
@@ -826,26 +819,36 @@
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1f"
     },
     {
-        "name": "NOCTURNAL  ",
+        "name": "NOCTURNAL",
         "color": ["p"],
         "type": [],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "1g"
+    },
+    {
+        "name": "NOCTURNAL (3E)",
+        "color": ["p"],
+        "type": ["effect", "dropOfLife"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "color",
+            "typeValue": "p",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 3,
+            "value": 3
+        },
+        "code": "2W"
     },
     {
         "name": "NOSY",
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
+
         "code": "1h"
     },
     {
@@ -853,8 +856,6 @@
         "color": ["p"],
         "type": ["effect"],
         "faceValue": -2,
-        "bonus": null,
-        "effect": null,
         "code": "1i"
     },
     {
@@ -862,8 +863,6 @@
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1j"
     },
     {
@@ -871,8 +870,6 @@
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1k"
     },
     {
@@ -880,8 +877,6 @@
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1l"
     },
     {
@@ -889,8 +884,6 @@
         "color": ["p"],
         "type": ["effect"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1m"
     },
     {
@@ -906,7 +899,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "1n"
     },
     {
@@ -914,17 +906,20 @@
         "color": ["p"],
         "type": ["effect"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1o"
+    },
+    {
+        "name": "SUPER SPREADER (3E)",
+        "color": ["p"],
+        "type": ["effect", "action"],
+        "faceValue": 2,
+        "code": "2Y"
     },
     {
         "name": "TEETH",
         "color": ["p"],
         "type": ["effect"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1p"
     },
     {
@@ -932,8 +927,6 @@
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1q"
     },
     {
@@ -941,8 +934,6 @@
         "color": ["p"],
         "type": ["effect", "action"],
         "faceValue": -2,
-        "bonus": null,
-        "effect": null,
         "code": "1r"
     },
     {
@@ -952,22 +943,32 @@
         "faceValue": 4,
         "bonus": {
             "type": "most",
-            "typeValue": "",
             "location": "traitPile",
             "target": "self",
             "amount": 1,
             "value": 4
         },
-        "effect": null,
         "code": "1s"
+    },
+    {
+        "name": "APEX PREDATOR (3E)",
+        "color": ["r"],
+        "type": ["dominant", "effect", "dropOfLife"],
+        "faceValue": 2,
+        "bonus": {
+            "type": "apex",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": 2
+        },
+        "code": "2Z"
     },
     {
         "name": "HYPER-INTELLIGENCE",
         "color": ["r"],
         "type": ["dominant", "effect"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "1t"
     },
     {
@@ -989,13 +990,25 @@
         },
         "code": "1v"
     },
+     {
+        "name": "SENTIENCE (3E)",
+        "color": ["r"],
+        "type": ["dominant", "effect", "dropOfLife"],
+        "faceValue": 2,
+        "bonus": {
+            "type": "mostColor",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": 1
+        },
+        "code": "32"
+    },
     {
         "name": "ANTLERS",
         "color": ["r"],
         "type": [],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "1w"
     },
     {
@@ -1003,8 +1016,6 @@
         "color": ["r"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1x"
     },
     {
@@ -1020,7 +1031,6 @@
             "amount": 1,
             "value": 2
         },
-        "effect": null,
         "code": "1y"
     },
     {
@@ -1028,8 +1038,6 @@
         "color": ["r"],
         "type": ["effect"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1z"
     },
     {
@@ -1037,8 +1045,6 @@
         "color": ["r"],
         "type": ["effect"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "1A"
     },
     {
@@ -1046,8 +1052,6 @@
         "color": ["r"],
         "type": ["effect"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1B"
     },
     {
@@ -1055,18 +1059,44 @@
         "color": ["r"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1C"
+    },
+    {
+        "name": "FANGS (3E)",
+        "color": ["r"],
+        "type": ["effect", "dropOfLife"],
+        "faceValue": 1,
+        "bonus": {
+            "type": "hasType",
+            "typeValue": "VAMPIRISM",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 1,
+            "value": 3
+        },
+        "code": "30"
     },
     {
         "name": "FIRE SKIN",
         "color": ["r"],
         "type": [],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "1D"
+    },
+    {
+        "name": "FIRE SKIN (3E)",
+        "color": ["r"],
+        "type": ["effect", "dropOfLife"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "color",
+            "typeValue": "r",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 3,
+            "value": 3
+        },
+        "code": "31"
     },
     {
         "name": "HEAT VISION",
@@ -1081,7 +1111,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "1E"
     },
     {
@@ -1089,15 +1118,13 @@
         "color": ["r"],
         "type": ["effect", "action"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1F"
     },
     {
         "name": "KIDNEY",
         "color": ["r"],
         "type": ["effect", "KIDNEY"],
-        "faceValue": null,
+        "faceValue": 0,
         "bonus": {
             "type": "type",
             "typeValue": "KIDNEY",
@@ -1106,7 +1133,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "1G"
     },
     {
@@ -1114,8 +1140,6 @@
         "color": ["r"],
         "type": [],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1H"
     },
     {
@@ -1123,8 +1147,6 @@
         "color": ["r"],
         "type": ["effect", "action"],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "1I"
     },
     {
@@ -1132,8 +1154,6 @@
         "color": ["r"],
         "type": ["effect"],
         "faceValue": 5,
-        "bonus": null,
-        "effect": null,
         "code": "1J"
     },
     {
@@ -1141,8 +1161,6 @@
         "color": ["r"],
         "type": ["effect"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1K"
     },
     {
@@ -1150,8 +1168,6 @@
         "color": ["r"],
         "type": ["effect", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1L"
     },
     {
@@ -1159,8 +1175,6 @@
         "color": ["r"],
         "type": ["effect", "action"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1M"
     },
     {
@@ -1168,32 +1182,13 @@
         "color": ["r"],
         "type": ["effect"],
         "faceValue": -1,
-        "bonus": null,
-        "effect": null,
         "code": "1N"
-    },
-    {
-        "name": "FORTUNATE (3E)",
-        "color": ["c"],
-        "type": ["effect", "dropOfLife"],
-        "faceValue": 0,
-        "bonus": {
-            "type": "all",
-            "location": "hand",
-            "target": "self",
-            "amount": 1,
-            "value": 1
-        },
-        "effect": null,
-        "code": "1O"
     },
     {
         "name": "NEURAL LINK",
         "color": ["b"],
         "type": ["effect", "action", "techling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1Q"
     },
     {
@@ -1201,8 +1196,6 @@
         "color": ["g"],
         "type": ["effect", "action", "techling"],
         "faceValue": 0,
-        "bonus": null,
-        "effect": null,
         "code": "1R"
     },
     {
@@ -1210,8 +1203,6 @@
         "color": ["g"],
         "type": ["effect", "action", "techling"],
         "faceValue": -1,
-        "bonus": null,
-        "effect": null,
         "code": "1S"
     },
     {
@@ -1226,7 +1217,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "1T"
     },
     {
@@ -1242,7 +1232,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "1U"
     },
     {
@@ -1250,8 +1239,6 @@
         "color": ["r"],
         "type": ["effect", "action", "techling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1V"
     },
     {
@@ -1259,8 +1246,6 @@
         "color": ["b", "g", "r", "p"],
         "type": ["dominant"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "1W"
     },
     {
@@ -1268,8 +1253,6 @@
         "color": ["b", "g", "r", "p"],
         "type": ["dominant", "effect"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "1X"
     },
     {
@@ -1277,8 +1260,6 @@
         "color": ["p", "g"],
         "type": [],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "1Y"
     },
     {
@@ -1286,8 +1267,6 @@
         "color": ["g", "b"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "1Z"
     },
     {
@@ -1295,8 +1274,6 @@
         "color": ["r", "g"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "20"
     },
     {
@@ -1304,8 +1281,6 @@
         "color": ["b", "r"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "21"
     },
     {
@@ -1313,8 +1288,6 @@
         "color": ["r", "p"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "22"
     },
     {
@@ -1322,8 +1295,6 @@
         "color": ["b", "p"],
         "type": [],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "23"
     },
     {
@@ -1331,7 +1302,6 @@
         "color": ["c"],
         "type": ["effect"],
         "faceValue": 2,
-        "bonus": null,
         "effect": {
             "popup": "single",
             "type": "colorChange"
@@ -1351,7 +1321,6 @@
             "amount": 1,
             "value": -1
         },
-        "effect": null,
         "code": "25"
     },
     {
@@ -1359,8 +1328,6 @@
         "color": ["b"],
         "type": ["effect", "dinoling", "action"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "26"
     },
     {
@@ -1368,8 +1335,6 @@
         "color": ["b"],
         "type": ["effect", "action", "dinoling"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "27"
     },
     {
@@ -1377,8 +1342,6 @@
         "color": ["b"],
         "type": ["effect", "dinoling"],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "28"
     },
     {
@@ -1386,8 +1349,6 @@
         "color": ["g"],
         "type": ["effect", "action", "dinoling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "29"
     },
     {
@@ -1395,8 +1356,6 @@
         "color": ["g"],
         "type": ["dinoling"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "2a"
     },
     {
@@ -1404,8 +1363,6 @@
         "color": ["g"],
         "type": ["effect", "dinoling"],
         "faceValue": 0,
-        "bonus": null,
-        "effect": null,
         "code": "2b"
     },
     {
@@ -1413,8 +1370,6 @@
         "color": ["g"],
         "type": ["effect", "action", "dinoling"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "2c"
     },
     {
@@ -1429,7 +1384,6 @@
             "amount": 3,
             "value": 1
         },
-        "effect": null,
         "code": "1P"
     },
     {
@@ -1437,8 +1391,6 @@
         "color": ["c"],
         "type": ["effect", "action", "dinoling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "2d"
     },
     {
@@ -1446,8 +1398,6 @@
         "color": ["c"],
         "type": ["effect", "action", "dinoling"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "2e"
     },
     {
@@ -1455,8 +1405,6 @@
         "color": ["p"],
         "type": ["effect", "action", "dinoling"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "2f"
     },
     {
@@ -1464,8 +1412,6 @@
         "color": ["p"],
         "type": ["effect", "action", "dinoling"],
         "faceValue": -2,
-        "bonus": null,
-        "effect": null,
         "code": "2g"
     },
     {
@@ -1473,8 +1419,6 @@
         "color": ["p"],
         "type": ["dinoling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "2h"
     },
     {
@@ -1482,8 +1426,6 @@
         "color": ["r"],
         "type": ["dominant", "effect", "dinoling"],
         "faceValue": 9,
-        "bonus": null,
-        "effect": null,
         "code": "2i"
     },
     {
@@ -1498,7 +1440,6 @@
             "amount": 1,
             "value": -1
         },
-        "effect": null,
         "code": "2j"
     },
     {
@@ -1514,7 +1455,6 @@
             "amount": 1,
             "value": -2
         },
-        "effect": null,
         "code": "2k"
     },
     {
@@ -1529,7 +1469,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "2l"
     },
     {
@@ -1544,7 +1483,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "2m"
     },
     {
@@ -1552,8 +1490,6 @@
         "color": ["b"],
         "type": ["dominant", "effect", "mythling"],
         "faceValue": 8,
-        "bonus": null,
-        "effect": null,
         "code": "2o"
     },
     {
@@ -1561,8 +1497,6 @@
         "color": ["b"],
         "type": ["effect", "mythling"],
         "faceValue": -1,
-        "bonus": null,
-        "effect": null,
         "code": "2p"
     },
     {
@@ -1570,8 +1504,6 @@
         "color": ["b"],
         "type": ["mythling"],
         "faceValue": 3,
-        "bonus": null,
-        "effect": null,
         "code": "2q"
     },
     {
@@ -1579,8 +1511,6 @@
         "color": ["b"],
         "type": ["effect", "mythling"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "2r"
     },
     {
@@ -1596,7 +1526,6 @@
             "amount": 1,
             "value": 1
         },
-        "effect": null,
         "code": "2s"
     },
     {
@@ -1604,8 +1533,6 @@
         "color": ["g"],
         "type": ["effect", "mythling"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "2t"
     },
     {
@@ -1613,8 +1540,6 @@
         "color": ["g"],
         "type": ["effect", "mythling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "2u"
     },
     {
@@ -1622,8 +1547,6 @@
         "color": [""],
         "type": ["effect", "mythling"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "2v"
     },
     {
@@ -1631,8 +1554,6 @@
         "color": ["c"],
         "type": ["mythling"],
         "faceValue": 4,
-        "bonus": null,
-        "effect": null,
         "code": "2w"
     },
     {
@@ -1640,8 +1561,6 @@
         "color": ["c"],
         "type": ["effect", "mythling"],
         "faceValue": -3,
-        "bonus": null,
-        "effect": null,
         "code": "2x"
     },
     {
@@ -1649,7 +1568,6 @@
         "color": ["c"],
         "type": ["effect", "mythling"],
         "faceValue": 2,
-        "bonus": null,
         "effect": {
             "type": "rainbow"
         },
@@ -1660,8 +1578,6 @@
         "color": ["c"],
         "type": ["effect", "mythling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "2z"
     },
     {
@@ -1669,8 +1585,6 @@
         "color": ["p"],
         "type": ["effect", "mythling"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "2A"
     },
     {
@@ -1678,8 +1592,6 @@
         "color": ["p"],
         "type": ["effect", "mythling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "2B"
     },
     {
@@ -1687,8 +1599,6 @@
         "color": ["p"],
         "type": ["effect", "mythling"],
         "faceValue": -2,
-        "bonus": null,
-        "effect": null,
         "code": "2C"
     },
     {
@@ -1696,8 +1606,6 @@
         "color": ["r"],
         "type": ["effect", "action", "mythling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "2D"
     },
     {
@@ -1712,7 +1620,6 @@
             "amount": 4,
             "value": 4
         },
-        "effect": null,
         "code": "2E"
     },
     {
@@ -1720,8 +1627,6 @@
         "color": ["r"],
         "type": ["effect", "mythling"],
         "faceValue": 1,
-        "bonus": null,
-        "effect": null,
         "code": "2F"
     },
     {
@@ -1729,8 +1634,6 @@
         "color": ["r"],
         "type": ["effect", "mythling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "2G"
     },
     {
@@ -1738,8 +1641,63 @@
         "color": ["r"],
         "type": ["effect", "action", "mythling"],
         "faceValue": 2,
-        "bonus": null,
-        "effect": null,
         "code": "2H"
+    },
+    {
+        "name": "FUSED",
+        "color": ["r", "g"],
+        "type": [],
+        "faceValue": 1,
+        "code": "2I"
+    },
+    {
+        "name": "PUFFY",
+        "color": ["b"],
+        "type": ["effect", "dropOfLife"],
+        "faceValue": 0,
+        "bonus": {
+            "type": "color",
+            "typeValue": "b",
+            "location": "traitPile",
+            "target": "self",
+            "amount": 3,
+            "value": 3
+        },
+        "code": "2K"
+    },
+    {
+        "name": "LOW HANGING FRUIT",
+        "color": ["g"],
+        "type": [],
+        "faceValue": 1,
+        "code": "2O"
+    },
+    {
+        "name": "WILTED",
+        "color": ["g"],
+        "type": ["effect"],
+        "faceValue": 1,
+        "code": "2P"
+    },
+    {
+        "name": "CHERISHED",
+        "color": ["c"],
+        "type": ["effect"],
+        "faceValue": 2,
+        "code": "2R"
+    },
+    {
+        "name": "IRRITABLE",
+        "color": ["p"],
+        "type": ["effect", "action"],
+        "faceValue": 1,
+        "code": "2V"
+    },
+    {
+        "name": "PAPPUS",
+        "color": ["p"],
+        "type": ["effect", "action"],
+        "faceValue": 1,
+        "code": "2X"
     }
 ]

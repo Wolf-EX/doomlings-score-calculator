@@ -84,9 +84,6 @@ function getSignBonus(player: Player) {
           }
           return 0;
         }, 0);
-        if(sign.targetMod === "not") {
-          count = allTraits.length - count;
-        }
       }
       return sign.bonus.reduce((acc: any, cur: any): number => {
         if(cur.typeCount.length === 1) {
@@ -221,28 +218,29 @@ export function getTraitTotalValue(players: Player[], index: number, id: string,
 function applyScoreModifier(bonus: Bonus, players: Player[], index: number, id: string, modifier: number[]): void {
   if(bonus.type === "colorAttack") {
     let value: Color = bonus.typeValue as Color;
-    if(bonus.typeValue === "choice"){
+    if(bonus.typeValue === "choice") {
       value = id.slice(2) as Color || value;
     }
 
-    
-    if(['r', 'b', 'g', 'p'].includes(value)) {
-      players.forEach((player, i) => {
-        if(i !== index) {
-          if(bonus.location && bonus.location !== "discardPile" && bonus.location !== "genePool"){
-            const pile = getTraitsWithAttachments(player[bonus.location]);
+    players.forEach((player, i) => {
+      if(i !== index) {
+        if(bonus.location && bonus.location !== "discardPile" && bonus.location !== "genePool"){
+          const pile = getTraitsWithAttachments(player[bonus.location]);
+          if(bonus.typeValue === "most") {
+            modifier[i] += Math.max(...getAllColorCount(player, pile)) * bonus.value;
+          } else {
             modifier[i] += getAllColorCount(player, pile)[['r', 'b', 'g', 'p'].indexOf(value)] * bonus.value;
           }
         }
-      });
-    }
+      }
+    });
   }
 }
 
 function countBonusType(players: Player[], index: number, id: string, bonus: Bonus): number {
-  let count = 0;
-  let bonusValue = bonus.value;
-  let bonusType = bonus.type;
+  let count: number = 0;
+  let bonusValue: number = bonus.value;
+  let bonusType: string = bonus.type;
   let targetPlayer: Player = players[index]; // Current player, change to player?
   let location: string[] | number[] | number | undefined; // undefined is temp until I implement discard and hand
   
@@ -345,22 +343,32 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
             highestIndex = -1;
           }
         });
-        if(["r", "b", "g", "p"][highestIndex] === bonus.typeValue) {
-          return 2
+        if(bonus.typeValue) {
+          if(["r", "b", "g", "p"][highestIndex] === bonus.typeValue) {
+            return bonus.value;
+          }
         }
-        return 0;
-      case "most":
+        return highestValue;
+      case "most": case "apex":
         let hasMost: boolean = false;
         if(bonus.location === "traitPile") {
-          const playerPileCount: number[] = players.map(player => {
+          const allPilesCount: number[] = players.map(player => {
             return getLocationSize(player["traitPile"]);
           }) || [];
-          hasMost = playerPileCount.every((pileCount, pileIndex) => {
+          hasMost = allPilesCount.every((pileCount, pileIndex) => {
             if(pileIndex === index) {
               return true;
             }
-            return playerPileCount[index] > pileCount;
+            return allPilesCount[index] > pileCount;
           });
+          if(bonus.type === "apex") {
+            const pileCount: number = getLocationSize(targetPlayer["traitPile"]);
+            let bonusCount: number =  hasMost ? 1 : 0;
+            bonusCount += allPilesCount.reduce((acc, cur) => {
+              return acc + (cur < pileCount ? 1 : 0);
+            }, 0);
+            return bonusCount * bonusValue;
+          }
         }
         return hasMost ? bonusValue : 0;
       case "faceValue":
@@ -374,6 +382,15 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
           return Math.max(...location);
         }
         return 0;
+      case "hasType":
+        const hasType: boolean = getTraitsWithAttachments(location).some((e) => {
+          const trait: Trait | undefined = getTraitData(e);
+          if(trait) {
+            return  checkBonusMatch(targetPlayer, id, e, "type", bonus.typeValue, trait) === 1;
+          }
+          return false;
+        }, 0);
+        return hasType ? bonus.value : 0;
       default:
         if(bonus.type === "bionic") {
           bonusType = "type";
@@ -385,7 +402,8 @@ function countBonusType(players: Player[], index: number, id: string, bonus: Bon
         count = getTraitsWithAttachments(location).reduce((acc, cur) => {
           const trait: Trait | undefined = getTraitData(cur);
           if(trait) {
-            return acc += checkBonusMatch(targetPlayer, id, cur, bonusType, typeValue, trait);
+            // this supposed to be +=?
+            return acc + checkBonusMatch(targetPlayer, id, cur, bonusType, typeValue, trait);
           }
           return 0;
         }, 0);
